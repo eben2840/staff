@@ -1,0 +1,364 @@
+body{
+    /* font-family: 'Poppins', sans-serif; */
+    font-family: 'Plus Jakarta Display', sans-serif;
+  }
+  
+  a{
+    text-decoration:none ;
+    color: black;
+  }
+  
+  .scrolling-wrapper-flexbox {
+    display: flex;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  
+  }
+  .ellipse{
+    width: 50px;
+    height: 50px;
+    background-color:  rgb(239, 237, 235);
+    border-radius: 50%;
+    margin-top: auto;
+    margin-bottom: auto;
+    margin-right: 10px;
+  }
+  .options-button{
+    border: none;
+    width: 100%;
+    background-color: white;
+    border-radius: 10px;
+    border :2px solid rgba(0, 0, 0, 0.205);
+    color: rgba(0, 0, 0, 0.486);
+    font-weight: bold;
+    padding: 20px;
+    margin: 10px 0;
+    text-align: left;
+  }
+  
+  .flow{
+    display: flex;
+    justify-content: space-between;
+  
+  }
+  /* ---------- */
+  
+  .demoWrapper {
+    padding: 10px;
+    background: white;
+    box-sizing: border-box;
+    resize: horizontal;
+    border: 1px dashed;
+    overflow: auto;
+    max-width: 100%;
+    height: calc(100vh - 16px);
+  }
+  
+  .card1 {
+    width: 100%;
+    padding-bottom: 75%;
+  
+    background: gold; /** <-- For the demo **/
+  }
+  /* ---------- */
+  
+  .strip{
+    display: flex;
+    justify-content: space-between;
+  }
+  
+  .strip-flex{
+    display: flex;
+  }
+  
+  .result{
+    border: 1px solid rgba(0, 0, 0, 0.486);
+    border-radius: 10px;
+    padding: 10px;
+    margin: 20px;
+  }
+  
+  .card {
+    flex: 0 0 auto;
+  }
+  
+  .button{
+    border: none;
+    width: 45%;
+    background-color:  rgb(239, 237, 235);
+    border-radius: 10px;
+    color: white;
+    padding: 20px;
+    margin: 10px 0;
+  }
+  
+  .login-button{
+    border: none;
+    width: 100%;
+    background-color:  rgb(239, 237, 235);
+    border-radius: 10px;
+    color: white;
+    padding: 20px;
+    margin: 10px 0;
+  
+  }
+  
+  .logout{
+    border: none;
+    width: 90%;
+    background-color: red;
+    border-radius: 10px;
+    color: white;
+    padding: 20px;
+    margin: 10px 0;
+    font-weight: bold;
+  }
+  
+  .space{
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    padding: 20px;
+    border-radius: 10px;
+    width: 100%;
+    border: none;
+    box-shadow: 2px 2px 10px 0px rgba(136, 136, 136, 0.3);
+    background-color: white;
+    font-family: 'Plus Jakarta Display', sans-serif;
+  }
+  
+  .landing{
+    width: 100vw;
+    height: 50vh;
+    background-color:  rgb(239, 237, 235);
+    background-image: url(../img/f683689acb8f3382022a27ceb5f66b3d.jpg);
+  }
+  
+  .board{
+    background-color: rgba(128, 128, 128, 0.521);
+    border-radius: 20px;
+    text-align: center;
+    padding: 30px;
+    margin-bottom:20px ;
+  }
+  
+  .sub-heading{
+    font-weight: 500;
+    font-family: 'Plus Jakarta Display', sans-serif;
+  
+  }
+  
+  .spaceform{
+    background-color: teal;
+  }
+
+
+  body {
+    background: #f2f2f2;
+}
+.side-nav-button {
+    padding: 16px;
+    background-color: #fff;
+    border-radius: 10px;
+    color: #992621;
+    display: flex;
+    align-items: center;
+}
+h1 {
+    color: black;
+}
+h4 {
+    color: black;
+}
+.side-nav-button-text{
+    margin: 0;
+    padding-left: 10px;
+}
+.side-nav-button-active {
+    padding: 20px;
+    background-color: #992621;
+    border-radius: 10px;
+    color: #fff;
+    display: flex;
+    align-items: center;
+}
+.side-nav-button a {
+    text-decoration: none;
+    color: #992621;
+}
+.side-nav-button a:hover {
+    color: #992621;
+}
+.side-nav-button-active a {
+    text-decoration: none;
+    color: #fff;
+}
+.side-nav-button-active a:hover {
+    color: #fff;
+}
+
+.spaceout{
+    justify-content: space-between;
+    display: flex;
+}
+.dashboard-item {
+    background-color: #fff;
+    padding: 30px;
+    border-radius: 15px;
+    color: #fff;
+    margin: 0;
+    box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+    margin-bottom: 5vh;
+    justify-content: space-between;
+}
+.department-item {
+    background-color: #fff;
+    padding: 30px;
+    border-radius: 15px;
+    color: #fff;
+    margin: 0;
+    box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+    margin-bottom: 5vh;
+    justify-content: space-between;
+}
+
+.department-item-active {
+    background-color: #992621;
+    padding: 30px;
+    border-radius: 15px;
+    color: #fff;
+    margin: 0;
+    box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+    margin-bottom: 5vh;
+    justify-content: space-between;
+}
+
+
+.dashboard-item-text{
+    margin-top: 0;
+    color: #992621;
+    
+}
+
+.profile-details {
+    border-radius: 10px;
+    padding: 8px;
+    display: flex;
+    align-items: center;
+    
+   
+    
+}
+
+.elipse img{
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    
+}
+.profile-name {
+    color: #992621;
+    font-size: 18px;
+    font-weight: 500;
+    margin-bottom: 2px;
+}
+.title {
+    font-size: 12px;
+    color: #992621;
+    font-weight: 400;
+}
+.school-item {
+    background-color: #fff;
+    padding: 40px;
+    border-radius: 15px;
+    color: #fff;
+    margin: 0;
+    box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+    margin-bottom: 10vh;
+}
+.names {
+    text-transform: uppercase;
+    color: black;
+}
+.names-active {
+    text-transform: uppercase;
+    color: #fff;
+}
+.info-more {
+    margin-bottom: 3vh;
+    
+}
+
+
+.form-floating:focus {
+    color: grey;
+}
+
+.user-box {
+    background: #fff;
+    padding: 20px;
+    border-radius: 15px;
+    margin: 0;
+    box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+    margin-bottom: 5vh;
+    justify-content: space-between;
+    
+}
+.user-box-items {
+    color: black;
+}
+
+.user-pic img {
+    width: 70px; 
+    height: 70px;
+}
+.user-text {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    margin-top: 15px;
+}
+.user-profile-text {
+    margin-bottom: 2vh;
+}
+
+
+
+.form-floating:focus {
+    color: grey;
+}
+
+.user-box {
+    background: #fff;
+    padding: 20px;
+    border-radius: 15px;
+    margin: 0;
+    box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+    margin-bottom: 5vh;
+    justify-content: space-between;
+    
+}
+.user-box-items {
+    color: black;
+}
+
+.user-pic img {
+    width: 70px; 
+    height: 70px;
+}
+.user-text {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    margin-top: 15px;
+}
+.user-profile-text {
+    margin-bottom: 2vh;
+}
+
+.info-pic{
+    border-radius: 50%;
+    width: 300px;
+    height: 300px;
+    text-align: center;
+}

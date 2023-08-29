@@ -1,0 +1,224 @@
+<!-- <!DOCTYPE html>
+<html>
+<head>
+    <title>Admin Dashboard</title>
+</head>
+<body>
+    <h1>Admin Dashboard</h1>
+    
+    <form action="{{ url_for('dashboard') }}" method="GET">
+        <label for="search_name">Search:</label>
+        <input type="text" name="search_name" id="search_name" value="{{ request.args.get('search_name', '') }}">
+        <input type="submit" value="Search">
+    </form>
+    
+    <table>
+        <tr>
+            <th>First Name</th>
+            <th>Last Name</th>
+            <th>Maiden Name</th>
+            <th>Email</th>
+            
+        </tr>
+        {% for staff_member in staff_members %}
+            <tr>
+                <td>{{ staff_member.firstname }}</td>
+                <td>{{ staff_member.surname }}</td>
+                <td>{{ staff_member.maiden_name }}</td>
+                <td>{{ staff_member.official_email }}</td>
+                
+            </tr>
+        {% endfor %}
+    </table>
+</body>
+</html> -->
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+    
+        <head>
+          <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+        </head>
+    
+        <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='assets/css/newstyle.css')}}">
+        <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+        <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+        <title>Bootstrap demo</title>
+        <link href='https://unpkg.com/boxicons@2.1.2/css/boxicons.min.css' rel='stylesheet'>
+        
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
+      </head>
+      <body>
+        
+   
+<body>
+    <script>
+        AOS.init();
+      </script>
+  
+        <nav class="navbar navbar-expand-lg sticky-top" style="background: #fff; ">
+          <div class="container-fluid" style="display:flex;">
+            <a class="navbar-brand">
+              <img src="https://www.central.edu.gh/static/img/Central-Uni-logo.png" alt="" width="15%">
+            </a> -->
+    <form method="GET" action="/dashboard">
+        <input type="text" name="search_name" placeholder="Search by name"><br><br>
+        <input type="text" name="member_staff" placeholder="Member Staff">
+        <input type="text" name="department_directorate_unit" placeholder="Department/Directorate/Unit">
+        <input type="text" name="gender" placeholder="Gender">
+        <input type="text" name="job_title" placeholder="Job Title">
+        <input type="text" name="employment_status" placeholder="Employment Status">
+        <input type="text" name="grade" placeholder="Grade">
+
+       
+        <input type="text" name="date_of_appointment" placeholder="Date of Appointment">
+        <input type="text" name="number" placeholder="Staff Number"> 
+        <input type="text" name="rank" placeholder="Rank">
+        <input type="text" name="end_of_contract" placeholder="End of Contract">
+      
+
+        <button type="submit">Apply Filters</button>
+    </form>
+</body>
+</html>
+
+
+<style>
+    /* Style the table to be responsive */
+    table {
+        width: 100%;
+        border-collapse: collapse;
+    }
+
+    th, td {
+        border: 1px solid #ddd;
+        padding: 8px;
+        text-align: left;
+    }
+
+    /* Hide the table headers on smaller screens */
+    @media (max-width: 768px) {
+        th {
+            display: none;
+        }
+    }
+</style>
+<table>
+    <tr>
+        <th>First Name</th>
+        <th>Last Name</th>
+        <th>Department/Unit</th>
+        <th>Gender</th>
+        <th>Job Title</th>
+        <th>Employment Status</th>
+        <th>Grade</th>
+        <th>Date of Appointment</th>
+        <th>End of Contract</th>
+        <th>Staff Number</th>
+        <th>Rank</th>
+        <th>Member Staff</th>
+       
+        <th>Ghana Card</th>
+        <th>SNIT Number</th>
+        <th>TIN Number</th>
+       
+        <th>Bank Number</th>
+        <th>Bank Name</th>
+        <th>Bank Branch</th>
+       
+        <th>Next of Kin</th>
+        <th>Relationship</th>
+        
+        <th>Address (Kin)</th>
+        <th>Gender (Kin)</th>
+        <th>Name (Beneficiaries)</th>
+        <th>Address (Beneficiaries)</th>
+        
+        <th>Address</th>
+        <th>Value Permit</th>
+        <th>Immigration Status</th>
+        <th>Immigration Number</th>
+    </tr>
+    {% for staff_member in staff_members %}
+        <tr>
+            <td>{{ staff_member.firstname }}</td>
+            <td>{{ staff_member.surname }}</td>
+            <td>{{ staff_member.department_directorate_unit }}</td>
+            <td>{{ staff_member.gender }}</td>
+            <td>{{ staff_member.job_title }}</td>
+            <td>{{ staff_member.employment_status }}</td>
+            <td>{{ staff_member.grade }}</td>
+            <td>{{ staff_member.date_of_appointment }}</td>
+            <td>{{ staff_member.end_of_contract }}</td>
+            <td>{{ staff_member.number }}</td>
+            <td>{{ staff_member.rank }}</td>
+            <td>{{ staff_member.member_staff }}</td>
+            
+         
+            <td>{{ staff_member.ghana_card }}</td>
+            <td>{{ staff_member.snit_number }}</td>
+            <td>{{ staff_member.tin_number }}</td>
+           
+            <td>{{ staff_member.bank_number }}</td>
+            <td>{{ staff_member.bank_name }}</td>
+            <td>{{ staff_member.bank_branch }}</td>
+            
+            <td>{{ staff_member.next_of_kin }}</td>
+            <td>{{ staff_member.relationship }}</td>
+            
+            <td>{{ staff_member.address_kin }}</td>
+            <td>{{ staff_member.gender_kin }}</td>
+            <td>{{ staff_member.name_beneficiaries }}</td>
+            <td>{{ staff_member.address_beneficiaries }}</td>
+           
+            <td>{{ staff_member.address }}</td>
+            <td>{{ staff_member.value_permit }}</td>
+            <td>{{ staff_member.immigration_status }}</td>
+            <td>{{ staff_member.immigration_number }}</td>
+            <!-- <td> -->
+                <!-- <form method="POST" action="/edit_firstname/{{ staff_member.id }}">
+                    <input type="text" name="new_firstname" placeholder="New First Name">
+                     
+                    <button type="submit">Update</button>
+                </form>
+
+                <form method="POST" action="/edit_surname/{{ staff_member.id }}">
+                    <input type="text" name="new_surname" placeholder="New Last Name">
+                     
+                    <button type="submit">Update</button>
+                </form>
+                <form method="POST" action="/edit_department/{{ staff_member.id }}">
+                    <input type="text" name="new_department" placeholder="New Department/Unit">
+                     
+                    <button type="submit">Update</button>
+                </form>
+                <form method="POST" action="/edit_gender/{{ staff_member.id }}">
+                    <input type="text" name="new_gender" placeholder="New Gender">
+                     
+                    <button type="submit">Update</button>
+                </form> -->
+                <!-- <form method="POST" action="/edit_job_title/{{ staff_member.id }}">
+                    <input type="text" name="new_job_title" placeholder="New Job Title">
+                    <button type="submit">Update</button>
+                </form>
+                <form method="POST" action="/edit_employment_status/{{ staff_member.id }}">
+                    <input type="text" name="new_employment_status" placeholder="New Employment Status">
+                    <button type="submit">Update</button>
+                </form>
+            </td>
+             -->
+             <td>
+                <a href="{{ url_for('edit_staff', staff_id=staff_member.id) }}">Edit</a>
+            </td>
+        </tr>
+    {% endfor %}
+</table>
+
+
+
+<form action="{{ url_for('logout') }}" method="POST">
+    <input type="submit" value="Logout">
+</form>

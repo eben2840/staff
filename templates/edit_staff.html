@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Edit Staff Member</title>
+</head>
+<body>
+    <h2>Edit Staff Member</h2>
+    <form action="{{ url_for('update_staff', staff_id=staff_member.id) }}" method="POST">
+        <label for="new_firstname">New First Name:</label>
+        <input type="text" id="new_firstname" name="new_firstname" placeholder="New First Name" value="{{ staff_member.firstname }}"><br>
+        
+        <label for="new_surname">New Last Name:</label>
+        <input type="text" id="new_surname" name="new_surname" placeholder="New Last Name" value="{{ staff_member.surname }}"><br>
+        
+        <label for="new_department">New Department/Unit:</label>
+        <input type="text" id="new_department" name="new_department" placeholder="New Department/Unit" value="{{ staff_member.department_directorate_unit }}"><br>
+
+        <label for="new_job_title">New Job Title:</label>
+        <input type="text" id="new_job_title" name="new_job_title" placeholder="New Job Title" value="{{ staff_member.job_title }}"><br>
+          
+        <label for="new_employment_status">New Employment Status:</label>
+        <input type="text" id="new_employment_status" name="new_employment_status" placeholder="New Employment Status" value="{{ staff_member.employment_status }}"><br>
+        
+
+        <label for="new_grade">New Grade:</label>
+        <input type="text" id="new_grade" name="new_grade" placeholder="New Grade" value="{{ staff_member.grade }}"><br>
+
+        <label for="new_staff_number">New Staff Number:</label>
+        <input type="text" id="new_staff_number" name="new_staff_number" placeholder="New Staff Number" value="{{ staff_member.staff_number }}"><br>
+
+        <label for="new_rank">New Rank:</label>
+        <input type="text" id="new_rank" name="new_rank" placeholder="New Rank" value="{{ staff_member.rank }}"><br>
+
+        <label for="new_member_staff">New Member Staff:</label>
+        <input type="text" id="new_member_staff" name="new_member_staff" placeholder="New Member Staff" value="{{ staff_member.member_staff }}"><br>
+
+        <label for="new_ghana_card">New Ghana Card:</label>
+        <input type="text" id="new_ghana_card" name="new_ghana_card" placeholder="New Ghana Card" value="{{ staff_member.ghana_card }}"><br>
+         
+        
+
+            <label for="new_snit_number">New SNIT Number:</label>
+            <input type="text" id="new_snit_number" name="new_snit_number" placeholder="New SNIT Number" value="{{ staff_member.snit_number }}"><br>
+
+            <label for="new_tin_number">New TIN Number:</label>
+            <input type="text" id="new_tin_number" name="new_tin_number" placeholder="New TIN Number" value="{{ staff_member.tin_number }}"><br>
+
+            <label for="new_bank_number">New Bank Number:</label>
+            <input type="text" id="new_bank_number" name="new_bank_number" placeholder="New Bank Number" value="{{ staff_member.bank_number }}"><br>
+
+            <label for="new_bank_name">New Bank Name:</label>
+            <input type="text" id="new_bank_name" name="new_bank_name" placeholder="New Bank Name" value="{{ staff_member.bank_name }}"><br>
+
+            <label for="new_bank_branch">New Bank Branch:</label>
+            <input type="text" id="new_bank_branch" name="new_bank_branch" placeholder="New Bank Branch" value="{{ staff_member.bank_branch }}"><br>
+
+            <label for="new_next_of_kin">New Next of Kin:</label>
+            <input type="text" id="new_next_of_kin" name="new_next_of_kin" placeholder="New Next of Kin" value="{{ staff_member.next_of_kin }}"><br>
+
+            <label for="new_relationship">New Relationship:</label>
+            <input type="text" id="new_relationship" name="new_relationship" placeholder="New Relationship" value="{{ staff_member.relationship }}"><br>
+
+            <label for="new_address_kin">New Address (Kin):</label>
+            <input type="text" id="new_address_kin" name="new_address_kin" placeholder="New Address (Kin)" value="{{ staff_member.address_kin }}"><br>
+
+            <label for="new_gender_kin">New Gender (Kin):</label>
+            <input type="text" id="new_gender_kin" name="new_gender_kin" placeholder="New Gender (Kin)" value="{{ staff_member.gender_kin }}"><br>
+
+            <label for="new_name_beneficiaries">New Name (Beneficiaries):</label>
+            <input type="text" id="new_name_beneficiaries" name="new_name_beneficiaries" placeholder="New Name (Beneficiaries)" value="{{ staff_member.name_beneficiaries }}"><br>
+
+            <label for="new_address_beneficiaries">New Address (Beneficiaries):</label>
+            <input type="text" id="new_address_beneficiaries" name="new_address_beneficiaries" placeholder="New Address (Beneficiaries)" value="{{ staff_member.address_beneficiaries }}"><br>
+
+            <label for="new_address">New Address:</label>
+            <input type="text" id="new_address" name="new_address" placeholder="New Address" value="{{ staff_member.address }}"><br>
+
+            <label for="new_value_permit">New Value Permit:</label>
+            <input type="text" id="new_value_permit" name="new_value_permit" placeholder="New Value Permit" value="{{ staff_member.value_permit }}"><br>
+
+            <label for="new_immigration_status">New Immigration Status:</label>
+            <input type="text" id="new_immigration_status" name="new_immigration_status" placeholder="New Immigration Status" value="{{ staff_member.immigration_status }}"><br>
+
+            <label for="new_immigration_number">New Immigration Number:</label>
+            <input type="text" id="new_immigration_number" name="new_immigration_number" placeholder="New Immigration Number" value="{{ staff_member.immigration_number }}"><br>
+
+
+
+
+       
+        
+        <button type="submit">Save Changes</button>
+    </form>
+    <br>
+    <a href="{{ url_for('dashboard') }}">Back to Dashboard</a>
+</body>
+</html>

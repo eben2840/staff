@@ -1,0 +1,17 @@
+<section>
+    <h2>Edit Profile</h2>
+    <form action="{{ url_for('edit_profile') }}" method="POST">
+        <label for="new_firstname">New First Name:</label>
+        <input type="text" id="new_firstname" name="new_firstname" placeholder="New First Name">
+        
+        <label for="new_surname">New Sur Name:</label>
+    <input type="text" id="new_surname" name="new_surname" placeholder="New Last Name">
+        
+        <label for="new_department">New Department/Unit:</label>
+        <input type="text" id="new_department" name="new_department" placeholder="New Department/Unit">
+        
+        
+        
+        <button type="submit">Save Changes</button>
+    </form>
+</section>

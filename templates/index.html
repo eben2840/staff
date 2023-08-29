@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="{{url_for('static', filename='style.css')}}">
+    <title>Welcome to my WebPage</title>
+</head>
+<body>
+    <h1> This is  my Test Website</h1>
+    <h2> Design by {{name}}</h2>
+
+    <p>Power by Flask and Python using jinga2 templates engine</p>
+    <img src="{{url_for ('static' , filename='images/gojo.png')}}" alt="" srcset="">
+
+
+</body>
+</html>

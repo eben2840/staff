@@ -33,26 +33,337 @@
     <title></title>
   </head>
   <body>
-<nav class="navbar navbar-expand-lg navbar-light" style="background-color: rgba(136, 136, 136, 0.3);; color: white;">
-  
-  <div class="container-fluid">
-    <a href="#" class="logo">
+    <nav class="navbar navbar-expand-lg sticky navbar-light bg-danger px-0 py-3" >
+      <div class="container-xl">
+        <button class="navbar-toggler" style="border:none;"  type="button" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+          <div class="dropdown" >
+            
+            <div class="btn btn-secondary dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false" style=" background-color:#ca181e; border-radius:50px; width:40px;height:40px;">
+              
+            </div>
+            
+          
+            <ul class="dropdown-menu">
+             
+                <li><a class="dropdown-item" href="#">Edit</a></li>
+                <li><a class="dropdown-item" href="#">Reset Password</a></li>
+                <form action="{{ url_for('logout') }}" method="POST">
+                  <input type="submit" value="Logout" style="margin-left:12px; background-color:#fff; border:none;">
+              </form>
+            </ul>
+          </div>
+        </button>
+        
+        <!-- Logo -->
+        <a class="navbar-brand" href="#">
+          <img src="https://www.central.edu.gh/static/img/Central-Uni-logo.png" style="width:100px;" class="h-8" alt="...">
+        </a>
+        <!-- Navbar toggle -->
+        
+        <!-- Collapse -->
+        <div class="collapse navbar-collapse" id="navbarCollapse">
+          <!-- Nav -->
+          <div class="navbar-nav mx-lg-auto">
+           
+          </div>
+          <!-- Right navigation -->
+          <div class="navbar-nav ms-lg-4">
+            
+          </div>
+          <!-- Action -->
+          <div class="d-flex align-items-lg-center mt-3 mt-lg-0" style="margin-right:30px;">
+            <div class="dropdown">
+              <div class="btn btn-secondary dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false" style=" background-color:#ca181e; border-radius:50px; width:70px;height:70px;">
+                
+              </div>
+             
+            
+              <ul class="dropdown-menu">
+               
+                <li><a class="dropdown-item" href="#">Edit</a></li>
 
-       
-      <img src="https://www.central.edu.gh/static/img/Central-Uni-logo.png" width="100" height="45" alt="">
-    </a>
-    </div>
-      
- 
-         
-  </nav>
+                <li><a class="dropdown-item" href="#">Reset Password</a></li>
+                
+                <form action="{{ url_for('logout') }}" method="POST">
+                  <input type="submit" value="Logout" style="margin-left:15px; background-color:#fff; border:none;">
+              </form>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </nav>
  
 <!-- <h6 style="background-color: rgba(0, 0, 255, 0.452); padding: 20px; border: 1px solid  rgb(255, 134, 154);; color:  rgb(255, 134, 154);; ">Click here <a href="#">here</a> to post an ad and start making money</h6> -->
-<div class="container">
+<!--<div class="container">
   <h1>Welcome to the User Dashboard, {{ user.firstname }}</h1>
   <br>
+-->
+  
+
+ <!-- can be found here https://www.bootdey.com/snippets/view/profile-with-data-and-skills#html -->
+<div class="container">
+  <div class="main-body">
+  
+        <!-- Breadcrumb -->
+        
+        <!-- /Breadcrumb -->
+  
+        <div class="row gutters-sm" style="margin-top:50px;">
+          <div class="col-md-4 mb-3">
+            <div class="card">
+              <div class="card-body">
+                <div class="d-flex flex-column align-items-center text-center">
+                  <img src="#" alt="Admin" class="rounded-circle" width="150">
+                  <div class="mt-3">
+                    <h4>{{ user.firstname }} {{ user.maidenname }} {{ user.surname }} </h4>
+                    <p class="text-secondary mb-1">{{ user.position }} | {{ user.gender }}</p>
+                    <p class="text-muted font-size-sm">{{ user.official_email }}</p>
+                    <p class="text-muted font-size-sm">{{ user.department_directorate_unit }} | {{ user.rank }}</p>
+                    <button class="btn btn-primary" style="background-color:red; border:none;">{{ user.number }}</button>
+                    <!--<button class="btn btn-outline-primary" style="color:#000; border:none;">{{ user.number }}</button>-->
+                  </div>
+                </div>
+              </div>
+            </div>
+<!--               end of card -->
+<!--               start of quick find -->
+            <div class="card mt-3">
+              <ul class="list-group list-group-flush">
+                <!--<li class="list-group-item d-flex justify-content-between align-items-center flex-wrap">
+                  <h6 class="mb-0"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-globe mr-2 icon-inline"><circle cx="12" cy="12" r="10"></circle><line x1="2" y1="12" x2="22" y2="12"></line><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path></svg>Website</h6>
+                  <span class="text-secondary">https://bootdey.com</span>
+                </li>-->
+                <!--<li class="list-group-item d-flex justify-content-between align-items-center flex-wrap">
+                  <h6 class="mb-0"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-github mr-2 icon-inline"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg>Github</h6>
+                  <span class="text-secondary">bootdey</span>
+                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-facebook mr-2 icon-inline text-primary"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path></svg>
+                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-instagram mr-2 icon-inline text-danger"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg>
+                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-twitter mr-2 icon-inline text-info"><path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"></path></svg>
+                </li>-->
+                <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap">
+                  <h6 class="mb-0">Bank Number:</h6>
+                  <span class="text-secondary">{{ user.bank_number }}</span>
+                </li>
+                <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap">
+                  <h6 class="mb-0">Bank Name:</h6>
+                  <span class="text-secondary">{{ user.bank_name }}</span>
+                </li>
+                <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap">
+                  <h6 class="mb-0">Bank Branch:</h6>
+                  <span class="text-secondary">{{ user.bank_branch }}</span>
+                </li>
+              </ul>
+            </div>
+          </div>
+<!--             end of quick find -->
+<!--             edit form -->
+          <div class="col-md-8">
+            <div class="card mb-3">
+              <div class="card-body">
+                <div class="row">
+                  
+                  <div class="col-sm-3">
+                    <h6 class="mb-0">Grade:</h6>
+                  </div>
+                  <div class="col-sm-9 text-secondary">
+                    {{ user.grade }}
+                  </div>
+                </div>
+                <hr>
+                <div class="row">
+                  <div class="col-sm-3">
+                    <h6 class="mb-0">Jon Title:</h6>
+                  </div>
+                  <div class="col-sm-9 text-secondary">
+                    {{ user.job_title }}
+                  </div>
+                </div>
+                <hr>
+                <div class="row">
+                  <div class="col-sm-3">
+                    <h6 class="mb-0">Employment Status:</h6>
+                  </div>
+                  <div class="col-sm-9 text-secondary">
+                    {{ user.employment_status }}
+                  </div>
+                </div>
+                <hr>
+                <div class="row">
+                  <div class="col-sm-3">
+                    <h6 class="mb-0">SNIT Number:</h6>
+                  </div>
+                  <div class="col-sm-9 text-secondary">
+                    {{ user.snit_number }}
+                  </div>
+                </div>
+                <hr>
+                <div class="row">
+                  <div class="col-sm-3">
+                    <h6 class="mb-0">Tin Number:</h6>
+                  </div>
+                  <div class="col-sm-9 text-secondary" >
+                    {{ user.tin_number }}
+                  </div>
+                </div>
+                <hr>
+                <div class="row">
+                  <div class="col-sm-12">
+                    
+                    <!--<a class="btn btn-info " id="editInfoButton" style="background-color:red; border:none; color:#fff;">Edit</a>-->
+
+                  </div>
+                </div>
+              </div>
+            </div>
+            
+<!--               end of edit form -->
+
+            <div class="row gutters-sm">
+              <div class="col-sm-6 mb-3">
+                <div class="card h-100">
+
+                  <div class="card-body">
+                    <h6 class="d-flex align-items-center mb-3"> <i class="material-icons text-info mr-2">Personal </i> Information</h6>
+                    <hr>
+                    <div class="row">
+
+                      <div class="col-sm-6">
+                        <h6 class="mb-0">Personal Email:</h6>
+                      </div>
+                      <div class="col-sm-6 text-secondary">
+                        {{ user.personal_email }}
+                      </div>
+                      <hr>
+                      <div class="col-sm-6">
+                        <h6 class="mb-0">Relationship:</h6>
+                      </div>
+                      <div class="col-sm-6 text-secondary">
+                        {{ user.relationship }}
+                      </div>
+                      <hr>
+                      <div class="col-sm-6">
+                        <h6 class="mb-0">Address:</h6>
+                      </div>
+                      <div class="col-sm-6 text-secondary">
+                        {{ user.address }}
+                      </div>
+                      <hr>
+                      <div class="col-sm-6">
+                        <h6 class="mb-0">Immigration Status:</h6>
+                      </div>
+                      <div class="col-sm-6 text-secondary">
+                        {{ user.immigration_status }}
+                      </div>
+                      <hr>
+                      <div class="col-sm-6">
+                        <h6 class="mb-0">Value Permit:</h6>
+                      </div>
+                      <div class="col-sm-6 text-secondary">
+                        {{ user.value_permit }}
+                      </div>
+
+                      <hr>
+                      <div class="col-sm-6">
+                        <h6 class="mb-0">Date of Appointment:</h6>
+                      </div>
+                      <div class="col-sm-6 text-secondary">
+                        {{ user.date_of_appointment }}
+                      </div>
+                      <hr>
+
+                    </div>
+                   
+                  <!--
+                    <small>Web Design</small>
+                    <div class="progress mb-3" style="height: 5px">
+                      <div class="progress-bar bg-primary" role="progressbar" style="width: 80%" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100"></div>
+                    </div>
+                    <small>Website Markup</small>
+                    <div class="progress mb-3" style="height: 5px">
+                      <div class="progress-bar bg-primary" role="progressbar" style="width: 72%" aria-valuenow="72" aria-valuemin="0" aria-valuemax="100"></div>
+                    </div>
+                    <small>One Page</small>
+                    <div class="progress mb-3" style="height: 5px">
+                      <div class="progress-bar bg-primary" role="progressbar" style="width: 89%" aria-valuenow="89" aria-valuemin="0" aria-valuemax="100"></div>
+                    </div>
+                    <small>Mobile Template</small>
+                    <div class="progress mb-3" style="height: 5px">
+                      <div class="progress-bar bg-primary" role="progressbar" style="width: 55%" aria-valuenow="55" aria-valuemin="0" aria-valuemax="100"></div>
+                    </div>
+                    <small>Backend API</small>
+                    <div class="progress mb-3" style="height: 5px">
+                      <div class="progress-bar bg-primary" role="progressbar" style="width: 66%" aria-valuenow="66" aria-valuemin="0" aria-valuemax="100"></div>
+                    </div>-->
+                  </div>
+                </div>
+              </div>
+              <div class="col-sm-6 mb-3">
+                <div class="card h-100">
+                  <div class="card-body">
+                    <h6 class="d-flex align-items-center mb-3"> <i class="material-icons text-info mr-2">Personal </i> Information</h6>
+
+                    <div class="row">
+
+                     
+                      
+
+                      <hr>
+                      <div class="col-sm-6">
+                        <h6 class="mb-0">End of Contract:</h6>
+                      </div>
+                      <div class="col-sm-6 text-secondary">
+                        {{ user.end_of_contract }}
+                      </div>
+
+                      <hr>
+
+                      <div class="col-sm-6">
+                        <h6 class="mb-0">Next of Kin:</h6>
+                      </div>
+                      <div class="col-sm-6 text-secondary">
+                        {{ user.next_of_kin }}
+                      </div>
+                      <hr>
+                      <div class="col-sm-6">
+                        <h6 class="mb-0">Address of Kin:</h6>
+                      </div>
+                      <div class="col-sm-6 text-secondary">
+                        {{ user.address_kin }}
+                      </div>
+
+                      <hr>
+                      <div class="col-sm-6">
+                        <h6 class="mb-0">Name of Beneficiaries:</h6>
+                      </div>
+                      <div class="col-sm-6 text-secondary">
+                        {{ user.name_beneficiaries }}
+                      </div>
+
+                      <hr>
+                      <div class="col-sm-6">
+                        <h6 class="mb-0">Address of Beneficiaries:</h6>
+                      </div>
+                      <div class="col-sm-6 text-secondary">
+                        {{ user.address_beneficiaries }}
+                      </div>
+
+                      <hr>
+                      
+                     
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
 
 
+
+          </div>
+        </div>
+
+      </div>
+  </div>
 <!-- 
   <section>
     <h2>Search Users</h2>
@@ -65,7 +376,7 @@
 
     </form>
 </form> -->
-
+<!--
 <div class="row">
 <ul>
   {% for found_user in found_users %}
@@ -74,232 +385,16 @@
 </ul>
 </div>
   </section>
-<br>
+<br>-->
 
-
-   
-    <div class="row">
-<!--personal Information-->
-      <div class="col-12">
-        <div class="department-item" >
-          <h4 style="color:#000;"><b>Personal Information</b></h4>
-
-    <div class="row">
-          <div class="col-6">
-        <h6 class="text-muted">Firstname </h6>
-        <h4 style="color: black; margin-bottom: 10px;">{{ user.firstname }}</h4>
-          </div>
-
-          <div class="col-6">
-        <h6 class="text-muted">Lastname </h6>
-        <h4 style="color: black; margin-bottom: 0;">{{ user.surname }}</h4>
-          </div>
-    </div>
-
-
-    <div class="row">
-      <div class="col-6">
-    <h6 class="text-muted">Maiden Name </h6>
-    <h4 style="color: black; margin-bottom: 10px;">{{ user.maidenname }}</h4>
-      </div>
-
-      <div class="col-6">
-    <h6 class="text-muted">Personal Email </h6>
-    <h4 style="color: black; margin-bottom: 0;">{{ user.personal_email }}</h4>
-      </div>
-
-
-      <div class="col-6">
-        <h6 class="text-muted">Relationship </h6>
-        <h4 style="color: black; margin-bottom: 0;">{{ user.relationship }}</h4>
-          </div>
-
-          <div class="col-6">
-            <h6 class="text-muted">Next of Kin </h6>
-            <h4 style="color: black; margin-bottom: 0;">{{ user.next_of_kin }}</h4>
-              </div>
-    
-              <div class="col-6">
-                <h6 class="text-muted">Address (Kin) </h6>
-                <h4 style="color: black; margin-bottom: 0;">{{ user.address_kin }}</h4>
-                  </div>
-            
-                  <div class="col-6">
-                    <h6 class="text-muted">Gender (Kin) </h6>
-                    <h4 style="color: black; margin-bottom: 0;">{{ user.gender_kin }}</h4>
-                      </div>
-
-                      <div class="col-6">
-                        <h6 class="text-muted">Name (Beneficiaries) </h6>
-                        <h4 style="color: black; margin-bottom: 0;">{{ user.name_beneficiaries }}</h4>
-                          </div>
-
-                          <div class="col-6">
-                            <h6 class="text-muted">Address (Beneficiaries) </h6>
-                            <h4 style="color: black; margin-bottom: 0;">{{ user.address_beneficiaries }}</h4>
-                              </div>
-                              
-                              <div class="col-6">
-                                <h6 class="text-muted">Personal Email </h6>
-                                <h4 style="color: black; margin-bottom: 0;">{{ user.personal_email }}</h4>
-                                  </div>
-                                  
-                                  <div class="col-6">
-                                    <h6 class="text-muted">Immigration Status </h6>
-                                    <h4 style="color: black; margin-bottom: 0;">{{ user.immigration_status }}</h4>
-                                      </div>     
-                                      
-                                      <div class="col-6">
-                                        <h6 class="text-muted">Value Permit </h6>
-                                        <h4 style="color: black; margin-bottom: 0;">{{ user.value_permit }}</h4>
-                                          </div>     
-                                          
-                                          
-                                          <div class="col-6">
-                                            <h6 class="text-muted">Address </h6>
-                                            <h4 style="color: black; margin-bottom: 0;">{{ user.address }}</h4>
-                                              </div>     
-
-                                              <div class="col-6">
-                                                <h6 class="text-muted">Date of Appointment </h6>
-                                                <h4 style="color: black; margin-bottom: 0;">{{ user.date_of_appointment }}</h4>
-                                                  </div>     
-
-                                                  <div class="col-6">
-                                                    <h6 class="text-muted">End of Contract </h6>
-                                                    <h4 style="color: black; margin-bottom: 0;">{{ user.end_of_contract }}</h4>
-                                                      </div>     
-        
-
-    
-</div>
-      
-
-    </div>
-
-
-    <!--work Information-->
-      <div class="col-12">
-        <div class="department-item" >
-          <h4 style="color:#000;"><b>Work Information</b></h4>
-          
-     <div class="row">
-          <div class="col-6">
-        <h6 class="text-muted">Position </h6>
-        <h4 style="color: black; margin-bottom: 10px;">{{ user.position }}</h4>
-          </div>
-
-          <div class="col-6">
-        <h6 class="text-muted">Official Email </h6>
-        <h4 style="color: black; margin-bottom: 0;">{{ user.official_email }}</h4>
-      </div>
-    </div>
-
-    <div class="row">
-      <div class="col-6">
-    <h6 class="text-muted">Member Staff </h6>
-    <h4 style="color: black; margin-bottom: 10px;">{{ user.member_staff }}</h4>
-      </div>
-
-      <div class="col-6">
-    <h6 class="text-muted">Department/Directorate/Unit </h6>
-    <h4 style="color: black; margin-bottom: 0;">{{ user.department_directorate_unit }}</h4>
-  </div>
-  </div>
-
-         <div class="col-6">
-    <h6 class="text-muted">Employee Number </h6>
-    <h4 style="color: black; margin-bottom: 0;">{{ user.number }}</h4>
-  </div>
-  
+                 
+                             
+                                
+         
 
 
 
-        <div class="row">
-        <div class="col-6">
-    <h6 class="text-muted">Gender </h6>
-    <h4 style="color: black; margin-bottom: 0;">{{ user.gender }}</h4>
-  </div>
- 
-
-       
-         <div class="col-6">
-    <h6 class="text-muted">Rank </h6>
-    <h4 style="color: black; margin-bottom: 0;">{{ user.rank }}</h4>
-  </div>
- </div>
-
- <div class="row">
-  <div class="col-6">
-    <h6 class="text-muted">Grade </h6>
-    <h4 style="color: black; margin-bottom: 0;">{{ user.grade }}</h4>
-  </div>
- 
-  
-  
-  <div class="col-6">
-    <h6 class="text-muted">Job Title </h6>
-    <h4 style="color: black; margin-bottom: 0;">{{ user.job_title }}</h4>
-  </div>
-  </div>
- 
-
-
-  <div class="col-6">
-    <h6 class="text-muted">Employment Status </h6>
-    <h4 style="color: black; margin-bottom: 0;">{{ user.employment_status }}</h4>
-  </div>
- 
-  <div class="row">
-  <div class="col-6">
-    <h6 class="text-muted">SNIT Number </h6>
-    <h4 style="color: black; margin-bottom: 0;">{{ user.snit_number }}</h4>
-  </div>
-  
-
-
-  <div class="col-6">
-    <h6 class="text-muted">TIN Number </h6>
-    <h4 style="color: black; margin-bottom: 0;">{{ user.tin_number }}</h4>
-  </div>
-  </div>
-
-  <div class="col-6">
-    <h6 class="text-muted">Rank </h6>
-    <h4 style="color: black; margin-bottom: 0;">{{ user.rank }}</h4>
-  </div>
- 
-
-      </div>
-    </div>
-    <!--end of work-->
-
-<!--bank Information-->
-    <div class="col-12">
-      <div class="department-item" >
-        <h4 style="color:#000;"><b>Bank Information</b></h4>
-        
-  <div class="row">
-        <div class="col-6">
-      <h6 class="text-muted">Bank Number </h6>
-      <h4 style="color: black; margin-bottom: 10px;">{{ user.bank_number }}</h4>
-        </div>
-
-        <div class="col-6">
-      <h6 class="text-muted">Bank Name</h6>
-      <h4 style="color: black; margin-bottom: 0;">{{ user.bank_name }}</h4>
-    </div>
-  </div>
-
-  <div class="row">
-        <div class="col-6">
-      <h6 class="text-muted">Bank Branch </h6>
-      <h4 style="color: black; margin-bottom: 10px;">{{ user.bank_branch }}</h4>
-        </div>
-
-        
-
-<!--end of bank-->
+<!---->
 
   </div>
 </div>
@@ -339,26 +434,6 @@
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js" integrity="sha384-q2kxQ16AaE6UbzuKqyBE9/u/KzioAlnx2maXQHiDX9d4/zp8Ok3f+M7DPm+Ib6IU" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.min.js" integrity="sha384-pQQkAEnwaBkjpqZ8RU1fF1AKtTcHJwFl3pblpTlHXybJjHpMYo79HY3hIi4NKxyj" crossorigin="anonymous"></script>
     -->
-    <form action="{{ url_for('logout') }}" method="POST">
-        <input type="submit" value="Logout">
-    </form>
-  </body>
-</html>
-
-  <section>
-        <h2>Search Users</h2>
-        <form action="{{ url_for('search_users') }}" method="GET">
-            <label for="search_name">Search by Name:</label>
-            <input type="text" name="search_name" id="search_name" placeholder="Enter name">
-            <button type="submit">Search</button>
-        </form>
-        <ul>
-            {% for found_user in found_users %}
-                <li><a href="{{ url_for('view_user_profile', user_id=found_user.id) }}">{{ found_user.firstname }} {{ found_user.surname }}</a></li>
-            {% endfor %}
-        </ul>
-    </section>
-
    
     
     

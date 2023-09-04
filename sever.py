@@ -71,7 +71,7 @@ def load_user(user_id):
 # def signup ():
 #     return render_template('regform.html')
 
-@app.route('/', methods=['GET', 'POST'])
+@app.route('/addnew', methods=['GET', 'POST'])
 def processor():
     if request.method == 'POST':
         surname = request.form['surname']
@@ -153,7 +153,7 @@ def processor():
 
         return "Signup Completed"
 
-    return render_template('regform.html')
+    return render_template('addnew.html')
 
 
 @app.route('/adlogin', methods=['GET', 'POST'])
@@ -166,7 +166,7 @@ def adlogin():
         if user:
             if user.admin_password == adpassword:
                 login_user(user)
-                return redirect(url_for('dashboard'))
+                return redirect(url_for('newdash'))
             else:
                 return "Invalid email or password"
         else:
@@ -186,7 +186,7 @@ def login():
         if user:
             if user.password == password:
                 login_user(user)
-                return redirect(url_for('user_dashboard'))
+                return redirect(url_for('user_dashboards'))
             else:
                 return "Invalid email or password"
     
@@ -194,14 +194,20 @@ def login():
 
 
 
-@app.route('/user_dashboard')
+@app.route('/myprofile')
 @login_required  
 def user_dashboard():
     return render_template('user_dashboard.html', user=current_user)
 
+@app.route('/user_dashboards')
+@login_required  
+def user_dashboards():
+    return render_template('user_dashboards.html', user=current_user)
+
 
 
 @app.route('/admin')
+
 def admin():
     return render_template('admin_signup.html')
 
@@ -291,7 +297,7 @@ def processor2():
     db.session.add(new_user)
     db.session.commit()
 
-    return "Admin registration completed"
+    return redirect(url_for('/'))
 
 
 
@@ -369,7 +375,7 @@ def dashboard():
         end_of_contract = datetime.strptime(end_of_contract, '%Y-%m-%d').date()
         staff_members = [staff for staff in staff_members if staff.end_of_contract == end_of_contract]
 
-    return render_template('admin_dashboard.html', staff_members=staff_members,user=current_user)
+    return render_template('profile.html', staff_members=staff_members,user=current_user)
 
 # @app.route('/edit/<int:staff_id>', methods=['POST'])
 # @login_required
@@ -380,7 +386,7 @@ def dashboard():
 #     new_gender = request.form.get('new_gender')
 
 #     staff_to_edit = Staff.query.get(staff_id)
-#     if staff_to_edit:
+#     if staff_to_edit:r
 #         staff_to_edit.firstname = new_firstname
 #         staff_to_edit.surname = new_surname
 #         staff_to_edit.department_directorate_unit = new_department
@@ -572,7 +578,7 @@ def search_users():
     found_users = Staff.query.filter(
         (Staff.firstname.contains(search_name)) | (Staff.surname.contains(search_name))
     ).all()
-    return render_template('user_dashboard.html', user=current_user, found_users=found_users)
+    return render_template('user_dashboards.html', user=current_user, found_users=found_users)
 
 
 @app.route('/view_user_profile/<int:user_id>', methods=['GET'])
@@ -591,5 +597,227 @@ def logout():
     return redirect(url_for('login'))  
 
 
+@app.route('/newdash', methods=['POST','GET']) 
+@login_required
+def newdash():
+    return render_template('newdash.html')
+
+
+
+
+@app.route('/rep', methods=['POST','GET']) 
+@login_required 
+def rep():
+    search_name = request.args.get('search_name', '').strip()
+    member_staff = request.args.get('member_staff', '').strip()
+    department_directorate_unit = request.args.get('department_directorate_unit', '').strip()
+    number = request.args.get('number', '').strip()
+    gender = request.args.get('gender', '').strip()
+    rank = request.args.get('rank', '').strip()
+    grade = request.args.get('grade', '').strip()
+    job_title = request.args.get('job_title', '').strip()
+    employment_status = request.args.get('employment_status', '').strip()
+    date_of_appointment = request.args.get('date_of_appointment', '').strip()
+    end_of_contract = request.args.get('end_of_contract', '').strip()
+
+    staff_members = Staff.query.all()
+    
+    if search_name:
+        query = Staff.query.filter(or_(
+            Staff.firstname.ilike(f'%{search_name}%'),
+            Staff.surname.ilike(f'%{search_name}%')
+        ))
+        staff_members = query.all()
+
+   
+    if member_staff:
+        staff_members = [staff for staff in staff_members if staff.member_staff == member_staff]
+
+    if department_directorate_unit:
+        staff_members = [staff for staff in staff_members if staff.department_directorate_unit == department_directorate_unit]
+
+    if number:
+        staff_members = [staff for staff in staff_members if staff.number == number]
+
+    if gender:
+        staff_members = [staff for staff in staff_members if staff.gender == gender]
+
+    if rank:
+        staff_members = [staff for staff in staff_members if staff.rank == rank]
+
+    if grade:
+        staff_members = [staff for staff in staff_members if staff.grade == grade]
+
+    if job_title:
+        staff_members = [staff for staff in staff_members if staff.job_title == job_title]
+
+    if employment_status:
+        staff_members = [staff for staff in staff_members if staff.employment_status == employment_status]
+
+   
+    if date_of_appointment:
+        date_of_appointment = datetime.strptime(date_of_appointment, '%Y-%m-%d').date()
+        staff_members = [staff for staff in staff_members if staff.date_of_appointment == date_of_appointment]
+
+    if end_of_contract:
+        end_of_contract = datetime.strptime(end_of_contract, '%Y-%m-%d').date()
+        staff_members = [staff for staff in staff_members if staff.end_of_contract == end_of_contract]
+
+    return render_template('rep.html', staff_members=staff_members,user=current_user)
+
+@app.route('/as', methods=['POST','GET']) 
+@login_required
+def processor1():
+    if request.method == 'POST':
+        surname = request.form['surname']
+        firstname = request.form['firstname']
+        othernames = request.form['maiden_name']
+        official_email = request.form['official_email']
+        personal_email = request.form['personal_email']
+        password = request.form['password']
+        position = request.form['position']
+        member_staff = request.form['member_staff']
+        department_directorate_unit = request.form['department_directorate_unit']
+        number = request.form['number']
+        gender = request.form['gender']
+        rank = request.form['rank']
+        grade = request.form['grade']
+        job_title = request.form['job_title']
+        employment_status = request.form['employment_status']
+        date_of_appointment_str = request.form['date_of_appointment']
+        end_of_contract_str = request.form['end_of_contract']
+
+        ghana_card = request.form['ghana_card']
+        snit_number = request.form['snit_number']
+        tin_number = request.form['tin_number']
+        bank_number = request.form['bank_number']
+        bank_name = request.form['bank_name']
+        bank_branch = request.form['bank_branch']
+        next_of_kin = request.form['next_of_kin']
+        relationship = request.form['relationship']
+        address_kin = request.form['address_kin']
+        gender_kin = request.form['gender_kin']
+        name_beneficiaries = request.form['name_beneficiaries']
+        address_beneficiaries = request.form['address_beneficiaries']
+        address = request.form['address']
+        value_permit = request.form['value_permit']
+        immigration_status = request.form['immigration_status']
+        immigration_number = request.form['immigration_number']
+
+        date_of_appointment = datetime.strptime(date_of_appointment_str, '%Y-%m-%d').date()
+        end_of_contract = datetime.strptime(end_of_contract_str, '%Y-%m-%d').date()
+
+        new_staff = Staff(
+            surname=surname,
+            firstname=firstname,
+            maiden_name=othernames,
+            official_email=official_email,
+            personal_email=personal_email,
+            password=password,
+            position=position,
+            member_staff=member_staff,
+            department_directorate_unit=department_directorate_unit,
+            number=number,
+            gender=gender,
+            rank=rank,
+            grade=grade,
+            job_title=job_title,
+            employment_status=employment_status,
+            date_of_appointment=date_of_appointment,
+            end_of_contract=end_of_contract,
+            ghana_card=ghana_card,
+            snit_number=snit_number,
+            tin_number=tin_number,
+            bank_number=bank_number,
+            bank_name=bank_name,
+            bank_branch=bank_branch,
+            next_of_kin=next_of_kin,
+            relationship=relationship,
+            address_kin=address_kin,
+            gender_kin=gender_kin,
+            name_beneficiaries=name_beneficiaries,
+            address_beneficiaries=address_beneficiaries,
+            address=address,
+            value_permit=value_permit,
+            immigration_status=immigration_status,
+            immigration_number=immigration_number
+        )
+
+        db.session.add(new_staff)
+        db.session.commit()
+
+        return "Signup Completed"
+    search_name = request.args.get('search_name', '').strip()
+    member_staff = request.args.get('member_staff', '').strip()
+    department_directorate_unit = request.args.get('department_directorate_unit', '').strip()
+    number = request.args.get('number', '').strip()
+    gender = request.args.get('gender', '').strip()
+    rank = request.args.get('rank', '').strip()
+    grade = request.args.get('grade', '').strip()
+    job_title = request.args.get('job_title', '').strip()
+    employment_status = request.args.get('employment_status', '').strip()
+    date_of_appointment = request.args.get('date_of_appointment', '').strip()
+    end_of_contract = request.args.get('end_of_contract', '').strip()
+
+    staff_members = Staff.query.all()
+    
+    if search_name:
+        query = Staff.query.filter(or_(
+            Staff.firstname.ilike(f'%{search_name}%'),
+            Staff.surname.ilike(f'%{search_name}%')
+        ))
+        staff_members = query.all()
+
+   
+    if member_staff:
+        staff_members = [staff for staff in staff_members if staff.member_staff == member_staff]
+
+    if department_directorate_unit:
+        staff_members = [staff for staff in staff_members if staff.department_directorate_unit == department_directorate_unit]
+
+    if number:
+        staff_members = [staff for staff in staff_members if staff.number == number]
+
+    if gender:
+        staff_members = [staff for staff in staff_members if staff.gender == gender]
+
+    if rank:
+        staff_members = [staff for staff in staff_members if staff.rank == rank]
+
+    if grade:
+        staff_members = [staff for staff in staff_members if staff.grade == grade]
+
+    if job_title:
+        staff_members = [staff for staff in staff_members if staff.job_title == job_title]
+
+    if employment_status:
+        staff_members = [staff for staff in staff_members if staff.employment_status == employment_status]
+
+   
+    if date_of_appointment:
+        date_of_appointment = datetime.strptime(date_of_appointment, '%Y-%m-%d').date()
+        staff_members = [staff for staff in staff_members if staff.date_of_appointment == date_of_appointment]
+
+    if end_of_contract:
+        end_of_contract = datetime.strptime(end_of_contract, '%Y-%m-%d').date()
+        staff_members = [staff for staff in staff_members if staff.end_of_contract == end_of_contract]
+
+
+    return render_template('as.html', staff_members=staff_members,user=current_user)
+
+@app.route('/report', methods=['POST','GET']) 
+@login_required
+def report():
+    return render_template('report.html')
+
+
+
+@app.route('/', methods=['POST','GET']) 
+def landing():
+    return render_template('landing.html')
+
+
+
+
 if __name__ == '__main__':
-    app.run(port=5000, debug=True)
+    app.run(host='0.0.0.0',port=5000, debug=True)

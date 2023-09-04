@@ -1,0 +1,175 @@
+{% extends 'base.html' %}
+
+{% block body %}
+ 
+
+<aside class="admin__aside">
+    <div class="tabContainer">
+        <a href="/newdash"> <div class="tabButton" style="background-color:#fff; padding:15px; border-radius:5px; color:#000;"><span >Dashboards</span><i class="caret fas fa-angle-up"></i></div></a>
+        <div class="tabButtonBorder"></div>
+        <!--<div class="panel">
+            <ul>
+                <li><input type="checkbox" /><span>İstanbul</span> </li>
+                <li><input type="checkbox" /><span>Ankara</span> </li>
+                <li><input type="checkbox" /><span>İzmir</span> </li>
+                <li><input type="checkbox" /><span>Balıkesir</span> </li>
+            </ul>
+        </div>-->
+   
+    <div class="tabContainer">
+        <a href="/dashboard"> <div class="tabButton" style="background-color:#fff; padding:15px; border-radius:5px; color:#000;"><span>All Staff</span><i class="caret fas fa-angle-up"></i></div></a>
+        <div class="tabButtonBorder"></div>
+        <!--<div class="panel">
+            <ul>
+                <li><input type="checkbox" /><span>İstanbul</span> </li>
+                <li><input type="checkbox" /><span>Ankara</span> </li>
+                <li><input type="checkbox" /><span>İzmir</span> </li>
+                <li><input type="checkbox" /><span>Balıkesir</span> </li>
+            </ul>
+        </div>-->
+    </div>
+    <div class="tabContainer">
+        <a href="/addnew"><div class="tabButton" style="background-color:#fff; padding:15px; border-radius:5px; color:#000;"><span>Add Staff</span><i class="caret fas fa-angle-up"></i></div></a>
+        <div class="tabButtonBorder"></div>
+       <!-- <div class="panel">
+            <ul>
+                <li>
+                    <input type="radio" name="star" checked /><span>
+                    <i class="fa fa-star active"></i>
+                    <i class="fa fa-star active"></i>
+                    <i class="fa fa-star active"></i>
+                    <i class="fa fa-star active"></i>
+                    <i class="fa fa-star"></i> & Up</span>
+                </li>
+                <li>
+                    <input type="radio" name="star" /><span>
+                    <i class="fa fa-star active"></i>
+                    <i class="fa fa-star active"></i>
+                    <i class="fa fa-star active"></i>
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star"></i> & Up</span>
+                </li>
+                <li>
+                    <input type="radio" name="star" /><span>
+                    <i class="fa fa-star active"></i>
+                    <i class="fa fa-star active"></i>
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star"></i> & Up</span>
+                </li>
+                <li>
+                    <input type="radio" name="star" /><span>
+                    <i class="fa fa-star active"></i>
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star"></i> & Up</span>
+                </li>
+            </ul>
+        </div>-->
+    </div>
+    <div class="tabContainer">
+        <a href="/report">   <div class="tabButton" style="background-color:#ca181e; padding:15px; border-radius:5px; color:#fff;"><span>Report</span><i class="caret fas fa-angle-up"></i></div></a>
+        <div class="tabButtonBorder"></div>
+<!--                <div class="panel">
+            <ul>
+                <li><input type="checkbox" /><span>İstanbul</span> </li>
+                <li><input type="checkbox" /><span>Ankara</span> </li>
+                <li><input type="checkbox" /><span>İzmir</span> </li>
+                <li><input type="checkbox" /><span>Balıkesir</span> </li>
+            </ul>
+        </div>-->
+    </div>
+</aside>
+<main class="admin__main">
+    
+        
+    <div class="" style="padding:10px; background-color:var(--light-orange);">
+
+        <span class="upgradeAccount__text__header" style="font-size:40px; text-align:center; margin-left:350px;">Advance <span><b> Search</b></span></span><br>
+        <span class="upgradeAccount__text__header" style="font-size:15px; color:#000; margin-left:320px; text-align:center; ;">Perform an Advance <span><b> Search</b></span> with the various fields</span>
+    <form method="GET" action="/as">
+      <div class="row" style="padding:10px;">
+        <div class="col-lg-3" style="padding:20px;">
+            <label for="">Name</label>
+            <input type="text" name="search_name"  class="form-control" placeholder="Name" >
+        </div>
+
+        <div class="col-lg-3" style="padding:20px;">
+            <label for="">Job Title</label>
+            <input type="text" name="job_title" class="form-control" placeholder="Job Title" >
+        </div>
+
+        <div class="col-lg-3" style="padding:20px;">
+            <label for="">Directorate</label>
+            <input type="text" name="department_directorate_unit" class="form-control" placeholder="Directorate" >
+        </div>
+
+        <div class="col-lg-3" style="padding:20px;">
+            <label for="">Gender</label>
+            <input type="text" name="gender" class="form-control" placeholder="Gender" >
+        </div>
+        <button type="submit" style="text-decoration:none;padding:10px; margin-left:20px; border-radius:5px; color:#fff; background-color:#ca181e; border:none; width:100px;">Search</button>
+       
+    </div>
+  </form>
+
+    
+    </div>
+    <table class="table align-middle mb-0 bg-white">
+        <thead class="bg-light">
+          <tr>
+            <th>Name</th>
+            <th>Job Title</th>
+            <th>Status</th>
+            <th>Gender</th>
+            <th>Directorate</th>
+            <th>Rank</th>
+            <th>Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for staff_member in staff_members %}
+          <tr>
+            <td>
+              <div class="d-flex align-items-center">
+                
+                <div class="ms-3">
+                  <p class="fw-bold mb-1">{{ staff_member.firstname }} {{ staff_member.surname }} </p>
+                  
+                </div>
+              </div>
+            </td>
+            <td>
+              <p class="fw-normal mb-1">{{ staff_member.job_title }}</p>
+              <p class="text-muted mb-0"></p>
+            </td>
+            <td>
+              <span class="badge badge-success rounded-pill d-inline">{{ staff_member.employment_status }}</span>
+            </td>
+            <td>{{ staff_member.gender }} </td>
+            <td>
+              <span class="text-muted mb-0">{{ staff_member.department_directorate_unit }}</span>
+            
+             
+            </td>
+            <td>
+              <span class="text-muted mb-0">{{ staff_member.rank }}</span>
+            
+             
+            </td>
+
+            <td>
+              <a href="{{ url_for('edit_staff', staff_id=staff_member.id) }}"><button type="button" class="btn btn-link btn-sm btn-rounded">
+                Edit
+              </button></a>
+            </td>
+          </tr>
+
+          {% endfor %}
+          
+          
+        </tbody>
+      </table>
+</main>
+    {%endblock body%}

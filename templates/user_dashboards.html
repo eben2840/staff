@@ -1,0 +1,295 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Buy PostPills, Contraceptives, Lubrication and Test Kits, and have them delivered to you. Only in central University">
+    <link rel="shortcut icon" type="image/png" href="{{url_for('static', filename="img/favicon.png")}}"/>
+
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap"
+      rel="stylesheet">
+  
+
+
+
+<script src="static/css/index.js"></script>
+<script src="https://code.jquery.com/jquery-2.1.3.min.js"></script>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.gstatic.com"> 
+<!-- <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet"> -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@xz/fonts@1/serve/plus-jakarta-display.min.css"> 
+    <!-- Local Styles -->
+    <link rel="stylesheet" href="{{ url_for('static',filename='/assets/css/style2.css')}}">
+<!-- FontAwesomeKit -->
+    <script src="https://kit.fontawesome.com/091f1122a7.js" crossorigin="anonymous"></script>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
+    
+    <title></title>
+  </head>
+  <body>
+    <nav class="navbar navbar-expand-lg sticky navbar-light bg-danger px-0 py-3" >
+      <div class="container-xl">
+        <button class="navbar-toggler" style="border:none;"  type="button" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+          <div class="dropdown" >
+            
+            <div class="btn btn-secondary dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false" style=" background-color:#ca181e; border-radius:50px; width:40px;height:40px;">
+              
+            </div>
+            
+          
+            <ul class="dropdown-menu">
+              <li><a href="/myprofile" class="dropdown-item" href="#">My Profile</a></li>
+                
+                <li><a class="dropdown-item" href="#">Edit</a></li>
+                <li><a class="dropdown-item" href="#">Reset Password</a></li>
+                <form action="{{ url_for('logout') }}" method="POST">
+                  <input type="submit" value="Logout" style="margin-left:12px; background-color:#fff; border:none;">
+              </form>
+            </ul>
+          </div>
+        </button>
+        
+        <!-- Logo -->
+        <a class="navbar-brand" href="#">
+          <img src="https://www.central.edu.gh/static/img/Central-Uni-logo.png" style="width:100px;" class="h-8" alt="...">
+        </a>
+        <!-- Navbar toggle -->
+        
+        <!-- Collapse -->
+        <div class="collapse navbar-collapse" id="navbarCollapse">
+          <!-- Nav -->
+          <div class="navbar-nav mx-lg-auto">
+           
+          </div>
+          <!-- Right navigation -->
+          <div class="navbar-nav ms-lg-4">
+            
+          </div>
+          <!-- Action -->
+          <div class="d-flex align-items-lg-center mt-3 mt-lg-0" style="margin-right:30px;">
+            <div class="dropdown">
+              <div class="btn btn-secondary dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false" style=" background-color:#ca181e; border-radius:50px; width:70px;height:70px;">
+                
+              </div>
+             
+            
+              <ul class="dropdown-menu">
+                <li><a href="/myprofile" class="dropdown-item" href="#">My Profile</a></li>
+                <li><a class="dropdown-item" href="#">Edit</a></li>
+
+                <li><a class="dropdown-item" href="#">Reset Password</a></li>
+                
+                <form action="{{ url_for('logout') }}" method="POST">
+                  <input type="submit" value="Logout" style="margin-left:15px; background-color:#fff; border:none;">
+              </form>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </nav>
+ 
+<!-- <h6 style="background-color: rgba(0, 0, 255, 0.452); padding: 20px; border: 1px solid  rgb(255, 134, 154);; color:  rgb(255, 134, 154);; ">Click here <a href="#">here</a> to post an ad and start making money</h6> -->
+<!--<div class="container">
+  <h1>Welcome to the User Dashboard, {{ user.firstname }}</h1>
+  <br>
+-->
+  
+
+ <!-- can be found here https://www.bootdey.com/snippets/view/profile-with-data-and-skills#html -->
+<div class="container">
+  <div class="main-body">
+  
+       
+<!-- 
+  <section>
+    <h2>Search Users</h2>
+  <form class="form-inline my-2 my-lg-0 mt-2 space" style="display: flex; padding-top: 20px; padding-bottom: 20px;" >
+    <form action="{{ url_for('search_users') }}" method="GET">
+      <label for="search_name">Search by Name:</label>
+    <input type="text"
+        class="form-control" name="search_name" id="search_name" placeholder="Enter the name" aria-describedby="helpId" placeholder="" style="width:85%; border: none">
+     <button style="width: 15%; color:  rgb(255, 134, 154);; background-color: transparent; border: none;" class="btn btn-person`" type="submit"><i class="fas fa-enter">Search</i></button>
+
+    </form>
+</form> -->
+
+<!--<div class="row">
+<ul>
+  {% for found_user in found_users %}
+      <li><a href="{{ url_for('view_user_profile', user_id=found_user.id) }}">{{ found_user.firstname }} {{ found_user.surname }}</a></li>
+  {% endfor %}
+</ul>
+</div>-->
+  </section>
+
+
+
+   
+    <div class="row" style="padding:10px;">
+<!--personal Information-->
+
+<form action="{{ url_for('search_users') }}" method="GET" class="form" style="box-shadow: 0 1px 3px 0 rgb(218 218 253 / 65%), 0 1px 3px 0 rgb(206 206 238 / 54%); margin-bottom:25px;margin-top:25px;
+}">
+  <button>
+      <svg width="17" height="16" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="search">
+          <path d="M7.667 12.667A5.333 5.333 0 107.667 2a5.333 5.333 0 000 10.667zM14.334 14l-2.9-2.9" stroke="currentColor" stroke-width="1.333" stroke-linecap="round" stroke-linejoin="round"></path>
+      </svg>
+  </button>
+  <input class="input" name="search_name" id="search_name"  placeholder="Enter Names" required="" type="text" >
+  <button class="reset"  type="submit" >
+      <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"></path>
+      </svg>
+  </button>
+</form>
+
+      
+
+     <!--  
+      <div class="col-12" >
+        <div class="department-item" style="display:flex;">
+          <div style=" background-color:#ca181e; border-radius:50px; width:70px;height:70px;">
+            
+          </div>
+          <div class="department-ite" style="display:grid;">
+            <h4 style="color:#000; font-size:18px; margin-top:15px;"><b>{{ user.firstname }} {{ user.surname }}</b></h4>
+            <h6 class="text-muted"style="color:#000; margin-top:-0px;font-size:12px; "><b>{{ user.position }}</b></h6>
+        </div>
+      </div>
+</div>
+-->
+<div class="col-12 col-lg-3">
+  <div class="department-item" >
+    <h4 class="text-mute"style="color:#000; font-size:15px; text-align:left;"><b>H.R</b></h4>
+    <h4 class="text-muted"style="color:#000; font-size:10px; text-align:left;"><b>September 1, 2023.</b></h4>
+    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTZNQjoVyy1JPzdseoVNkhCJva3wSuL517Xza4-YkGZ2PyaZG30oB3Pd0q-2pghmQu456I&usqp=CAU" style="width:100%; border-radius:5px; box-shadow: 0 1px 3px 0 rgb(218 218 253 / 65%), 0 2px 6px 0 rgb(206 206 238 / 54%);" class="h-8" alt="...">
+    <h4 style="color:#000; font-size:15px; text-align:left; margin-top:10px;"><b>Admission Open for all</b></h4>
+  </div>
+</div>
+
+
+<div class="col-12 col-lg-3">
+  <div class="department-item" >
+    <h4 class="text-mute"style="color:#000; font-size:15px; text-align:left;"><b>ACADEMICS</b></h4>
+    <h4 class="text-muted"style="color:#000; font-size:10px; text-align:left;"><b>September 1, 2023.</b></h4>
+    <img src="https://s2.studylib.net/store/data/015981757_1-d5c0e0f91b0b9ad1a43b2d1ea2131ae2.png" style="width:100%; border-radius:5px; box-shadow: 0 1px 3px 0 rgb(218 218 253 / 65%), 0 1px 3px 0 rgb(206 206 238 / 54%);" class="h-8" alt="...">
+    <h4 style="color:#000; font-size:15px; text-align:left; margin-top:10px;"><b>Admission Open for all</b></h4>
+  </div>
+</div>
+
+<div class="col-12 col-lg-3">
+  <div class="department-item" >
+    <h4 class="text-mute"style="color:#000; font-size:15px; text-align:left;"><b>FINANCE</b></h4>
+    <h4 class="text-muted"style="color:#000; font-size:10px; text-align:left;"><b>September 1, 2023.</b></h4>
+    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSpyh3281sT4OQIncYmEJrob2PtHwWminx9fvIx3lCe1UYoNwFpAiFPoFMw2h6WvjVjXSM&usqp=CAU" style="width:100%; border-radius:5px; box-shadow: 0 1px 3px 0 rgb(218 218 253 / 65%), 0 1px 3px 0 rgb(206 206 238 / 54%);" class="h-8" alt="...">
+    <h4 style="color:#000; font-size:15px; text-align:left; margin-top:10px;"><b>Admission Open for all</b></h4>
+  </div>
+</div>
+
+
+<div class="col-12 col-lg-3">
+  <div class="department-item" >
+    <h4 class="text-mute"style="color:#000; font-size:15px; text-align:left;"><b>I.T</b></h4>
+    <h4 class="text-muted"style="color:#000; font-size:10px; text-align:left;"><b>September 1, 2023.</b></h4>
+    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTv76qOFh0zdGdYCjLHSwqPlfNdpFTgktaE3lYXLuV9W-T-8E-wVyMPE6M9Qc_53r5Si2Y&usqp=CAU" style="width:100%; border-radius:5px; box-shadow: 0 1px 3px 0 rgb(218 218 253 / 65%), 0 1px 3px 0 rgb(206 206 238 / 54%);" class="h-8" alt="...">
+    <h4 style="color:#000; font-size:15px; text-align:left; margin-top:10px;"><b>Admission Open for all</b></h4>
+  </div>
+</div>
+
+<!--
+<div class="col-6">
+  <div class="department-item" >
+    <h4 class="text-muted"style="color:#000; font-size:10px; text-align:center;"><b>All Directoates</b></h4>
+    <h4 style="color:#000; font-size:40px; text-align:center;"><b>27</b></h4>
+  </div>
+</div>
+
+<div class="col-6">
+  <div class="department-item" >
+    <h4 class="text-muted"style="color:#000; font-size:10px; text-align:center;"><b>All Directoates</b></h4>
+    <h4 style="color:#000; font-size:40px; text-align:center;"><b>27</b></h4>
+  </div>
+</div>
+
+<div class="col-6">
+  <div class="department-item" >
+    <h4 class="text-muted"style="color:#000; font-size:10px; text-align:center;"><b>All Directoates</b></h4>
+    <h4 style="color:#000; font-size:40px; text-align:center;"><b>27</b></h4>
+  </div>
+</div>
+      -->
+
+    </div>
+
+</div>
+
+
+
+
+
+
+
+
+</div>
+
+
+
+  
+
+  <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+  <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+
+
+  <!-- The core Firebase JS SDK is always required and must be listed first -->
+<script src="https://www.gstatic.com/firebasejs/8.9.1/firebase-app.js"></script>
+
+<!-- TODO: Add SDKs for Firebase products that you want to use
+     https://firebase.google.com/docs/web/setup#available-libraries -->
+<script src="https://www.gstatic.com/firebasejs/8.9.1/firebase-analytics.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.9.1/firebase-storage.js"></script>
+
+<!-- <script defer src="//firebase/8.9.1/firebase-storage.js"></script> -->
+
+    <!-- Option 1: Bootstrap Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW" crossorigin="anonymous"></script>
+    <script src="static/css/index.js"></script>
+    <!-- Option 2: Separate Popper and Bootstrap JS -->
+    <!--
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js" integrity="sha384-q2kxQ16AaE6UbzuKqyBE9/u/KzioAlnx2maXQHiDX9d4/zp8Ok3f+M7DPm+Ib6IU" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.min.js" integrity="sha384-pQQkAEnwaBkjpqZ8RU1fF1AKtTcHJwFl3pblpTlHXybJjHpMYo79HY3hIi4NKxyj" crossorigin="anonymous"></script>
+    -->
+    
+  </body>
+</html>
+
+  <section>
+       <!-- <h2>Search Users</h2>
+        <form action="{{ url_for('search_users') }}" method="GET">
+            <label for="search_name">Search by Name:</label>
+            <input type="text" name="search_name" id="search_name" placeholder="Enter name">
+            <button type="submit">Search</button>
+        </form>-->
+       <!-- <ul>
+            {% for found_user in found_users %}
+                <li><a href="{{ url_for('view_user_profile', user_id=found_user.id) }}">{{ found_user.firstname }} {{ found_user.surname }}</a></li>
+            {% endfor %}
+        </ul>-->
+    </section>
+
+   
+    
+    
+<!--  
+
+    <form action="{{ url_for('logout') }}" method="POST">
+        <input type="submit" value="Logout">
+    </form>
+</body>
+</html> -->

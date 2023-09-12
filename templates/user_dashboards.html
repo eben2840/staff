@@ -136,7 +136,7 @@
 <!--personal Information-->
 
 <form action="{{ url_for('search_users') }}" method="GET" class="form" style="box-shadow: 0 1px 3px 0 rgb(218 218 253 / 65%), 0 1px 3px 0 rgb(206 206 238 / 54%); margin-bottom:25px;margin-top:25px;
-}">
+">
   <button>
       <svg width="17" height="16" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="search">
           <path d="M7.667 12.667A5.333 5.333 0 107.667 2a5.333 5.333 0 000 10.667zM14.334 14l-2.9-2.9" stroke="currentColor" stroke-width="1.333" stroke-linecap="round" stroke-linejoin="round"></path>
@@ -167,14 +167,15 @@
 -->
 <div class="col-12 col-lg-3">
   <div class="department-item" >
-    <h4 class="text-mute"style="color:#000; font-size:15px; text-align:left;"><b>H.R</b></h4>
+    <h4 class="text-mute"style="color:#000; font-size:15px; text-align:left;"><b>Financal Statement</b></h4>
     <h4 class="text-muted"style="color:#000; font-size:10px; text-align:left;"><b>September 1, 2023.</b></h4>
-    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTZNQjoVyy1JPzdseoVNkhCJva3wSuL517Xza4-YkGZ2PyaZG30oB3Pd0q-2pghmQu456I&usqp=CAU" style="width:100%; border-radius:5px; box-shadow: 0 1px 3px 0 rgb(218 218 253 / 65%), 0 2px 6px 0 rgb(206 206 238 / 54%);" class="h-8" alt="...">
-    <h4 style="color:#000; font-size:15px; text-align:left; margin-top:10px;"><b>Admission Open for all</b></h4>
+    <img src="https://s2.studylib.net/store/data/015981757_1-d5c0e0f91b0b9ad1a43b2d1ea2131ae2.png" style="width:100%; border-radius:5px; box-shadow: 0 1px 3px 0 rgb(218 218 253 / 65%), 0 1px 3px 0 rgb(206 206 238 / 54%);" class="h-8" alt="...">
+    <!-- <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTZNQjoVyy1JPzdseoVNkhCJva3wSuL517Xza4-YkGZ2PyaZG30oB3Pd0q-2pghmQu456I&usqp=CAU" style="width:100%; border-radius:5px; box-shadow: 0 1px 3px 0 rgb(218 218 253 / 65%), 0 2px 6px 0 rgb(206 206 238 / 54%);" class="h-8" alt="..."> -->
+    <h4 style="color:#000; font-size:15px; text-align:left; margin-top:10px;"><b>Download Your Data</b></h4>
   </div>
 </div>
 
-
+<!-- 
 <div class="col-12 col-lg-3">
   <div class="department-item" >
     <h4 class="text-mute"style="color:#000; font-size:15px; text-align:left;"><b>ACADEMICS</b></h4>
@@ -182,8 +183,8 @@
     <img src="https://s2.studylib.net/store/data/015981757_1-d5c0e0f91b0b9ad1a43b2d1ea2131ae2.png" style="width:100%; border-radius:5px; box-shadow: 0 1px 3px 0 rgb(218 218 253 / 65%), 0 1px 3px 0 rgb(206 206 238 / 54%);" class="h-8" alt="...">
     <h4 style="color:#000; font-size:15px; text-align:left; margin-top:10px;"><b>Admission Open for all</b></h4>
   </div>
-</div>
-
+</div> -->
+<!-- 
 <div class="col-12 col-lg-3">
   <div class="department-item" >
     <h4 class="text-mute"style="color:#000; font-size:15px; text-align:left;"><b>FINANCE</b></h4>
@@ -201,7 +202,7 @@
     <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTv76qOFh0zdGdYCjLHSwqPlfNdpFTgktaE3lYXLuV9W-T-8E-wVyMPE6M9Qc_53r5Si2Y&usqp=CAU" style="width:100%; border-radius:5px; box-shadow: 0 1px 3px 0 rgb(218 218 253 / 65%), 0 1px 3px 0 rgb(206 206 238 / 54%);" class="h-8" alt="...">
     <h4 style="color:#000; font-size:15px; text-align:left; margin-top:10px;"><b>Admission Open for all</b></h4>
   </div>
-</div>
+</div> -->
 
 <!--
 <div class="col-6">
@@ -284,7 +285,7 @@
     </section>
 
    
-    
+    <a href="{{ url_for('view_messages') }}">View Messages</a>
     
 <!--  
 

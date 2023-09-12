@@ -88,7 +88,7 @@
 
         <span class="upgradeAccount__text__header" style="font-size:40px; text-align:center; margin-left:350px;">Advance <span><b> Search</b></span></span><br>
         <span class="upgradeAccount__text__header" style="font-size:15px; color:#000; margin-left:320px; text-align:center; ;">Perform an Advance <span><b> Search</b></span> with the various fields</span>
-    <form method="GET" action="/as">
+     <form method="GET" action="/as">
       <div class="row" style="padding:10px;">
         <div class="col-lg-3" style="padding:20px;">
             <label for="">Name</label>
@@ -112,7 +112,8 @@
         <button type="submit" style="text-decoration:none;padding:10px; margin-left:20px; border-radius:5px; color:#fff; background-color:#ca181e; border:none; width:100px;">Search</button>
        
     </div>
-  </form>
+  </form> 
+   
 
     
     </div>
@@ -121,7 +122,9 @@
           <tr>
             <th>Name</th>
             <th>Job Title</th>
+            {% if True %}
             <th>Status</th>
+            {% endif %}
             <th>Gender</th>
             <th>Directorate</th>
             <th>Rank</th>
@@ -144,9 +147,14 @@
               <p class="fw-normal mb-1">{{ staff_member.job_title }}</p>
               <p class="text-muted mb-0"></p>
             </td>
+            {% if True %}
             <td>
               <span class="badge badge-success rounded-pill d-inline">{{ staff_member.employment_status }}</span>
             </td>
+            {% endif %}
+            <!-- <td>
+              <span class="badge badge-success rounded-pill d-inline">{{ staff_member.employment_status }}</span>
+            </td> -->
             <td>{{ staff_member.gender }} </td>
             <td>
               <span class="text-muted mb-0">{{ staff_member.department_directorate_unit }}</span>
@@ -164,7 +172,14 @@
                 Edit
               </button></a>
             </td>
+
+
+        
           </tr>
+
+
+          
+      
 
           {% endfor %}
           

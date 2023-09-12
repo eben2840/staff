@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, redirect, url_for
+from flask import Flask, flash, render_template, request, redirect, url_for
 from flask_sqlalchemy import SQLAlchemy
 from flask_login import LoginManager, UserMixin, login_user,login_required, logout_user, current_user
 from sqlalchemy import or_, func
@@ -56,7 +56,21 @@ class Staff(db.Model, UserMixin):
 
     def __repr__(self):
         return f"Staff('{self.id}', '{self.firstname}', '{self.position}')"
-    
+
+class Message(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    sender_id = db.Column(db.Integer, db.ForeignKey('staff.id'), nullable=False)
+    recipient_id = db.Column(db.Integer, db.ForeignKey('staff.id'), nullable=False)
+    message_content = db.Column(db.Text, nullable=False)
+    timestamp = db.Column(db.DateTime, default=db.func.current_timestamp())
+
+    sender = db.relationship('Staff', foreign_keys=[sender_id])
+    recipient = db.relationship('Staff', foreign_keys=[recipient_id])
+   
+def __init__(self, sender, recipient, content):
+        self.sender = sender
+        self.recipient = recipient
+        self.content = content
 
 login_manager = LoginManager(app)
     
@@ -297,7 +311,7 @@ def processor2():
     db.session.add(new_user)
     db.session.commit()
 
-    return redirect(url_for('/'))
+    return redirect(url_for('adlogin'))
 
 
 
@@ -435,6 +449,44 @@ def edit_department(staff_id):
         db.session.commit()
     return redirect(url_for('dashboard'))
 
+
+# @app.route('/send_message/<int:recipient_id>', methods=['GET', 'POST'])
+# @login_required
+# def send_message(recipient_id):
+#     recipient = Staff.query.get(recipient_id)
+#     if not recipient:
+#         return "Recipient not found"
+
+#     if request.method == 'POST':
+#         message_content = request.form.get('message_content')
+#         if not message_content:
+#             return "Message content is empty"
+
+#         # Create a new message
+#         message = Message(sender=current_user, recipient=recipient, message_content=message_content)
+#         db.session.add(message)
+#         db.session.commit()
+
+#         return redirect(url_for('user_dashboard'))
+
+#     # Pass 'recipient_id' to the template
+#     return render_template('send_message.html', form=form)
+
+
+
+
+
+@app.route('/view_messages', methods=['GET'])
+@login_required
+def view_messages():
+    # Retrieve messages for the current user
+    messages = Message.query.filter_by(recipient=current_user).order_by(Message.timestamp.desc()).all()
+    return render_template('view_messages.html', messages=messages)
+
+
+
+
+
 @app.route('/edit_gender/<int:staff_id>', methods=['POST'])
 @login_required
 def edit_gender(staff_id):
@@ -542,6 +594,55 @@ def update_staff(staff_id):
         return redirect(url_for('dashboard'))
     else:
         return "Staff member not found."
+    
+@app.route('/send_message', methods=['GET', 'POST'])
+@login_required
+def send_message():
+    if request.method == 'POST':
+        recipient_firstname = request.form.get('recipient_firstname')
+        recipient_surname = request.form.get('recipient_surname')
+        message_content = request.form.get('message_content')
+
+        # Check if the recipient exists by first name and surname
+        recipient = Staff.query.filter_by(firstname=recipient_firstname, surname=recipient_surname).first()
+
+        if recipient:
+            # Create a new message
+            new_message = Message(
+                sender=current_user,
+                recipient=recipient,
+                message_content=message_content
+            )
+
+            db.session.add(new_message)
+            db.session.commit()
+
+            flash('Message sent successfully', 'success')
+            return redirect(url_for('send_message'))
+
+        flash('Recipient not found', 'danger')
+
+    return render_template('send_message.html', user=current_user)
+
+
+
+@app.route('/view_user_profile/<int:user_id>', methods=['GET'])
+@login_required
+def show_user_profile(user_id):
+    user = Staff.query.get(user_id)
+    if user:
+        return render_template('view_user_profile.html', user=user)
+    else:
+        return "User not found."
+
+
+@app.route('/user/<int:user_id>')
+def show_user_profile_by_id(user_id):
+    # Assuming you retrieve the user object here
+    user = get_staff_by_id(user_id)
+
+    # Pass the "user" variable to the template
+    return render_template('user_profile.html', user=user)
 
 
 
@@ -594,13 +695,44 @@ def view_user_profile(user_id):
 @login_required  
 def logout():
     logout_user() 
-    return redirect(url_for('login'))  
+    return redirect(url_for('login')) 
+
+@app.route('/remove_user', methods=['GET'])
+@login_required  # Make sure this route is accessible only to logged-in admins
+def remove_user():
+    # Fetch the list of staff members from your database
+    staff_members = Staff.query.all()
+    return render_template('remove_user.html', staff_members=staff_members)
+
+@app.route('/remove_user', methods=['POST'])
+@login_required  # Ensure that only admins can access this route
+def remove_user_post():
+    # Get the user ID to remove from the form data
+    user_id = request.form.get('user_id')
+    
+    # Query the staff member by their ID
+    staff_member = Staff.query.get(user_id)
+    
+    if staff_member:
+        # Delete the staff member from the database
+        db.session.delete(staff_member)
+        db.session.commit()
+        flash(f'Successfully removed {staff_member.firstname} {staff_member.surname}', 'success')
+    else:
+        flash('User not found', 'error')
+
+    # Redirect back to the list of staff members or another appropriate page
+    return redirect('/remove_user')
+
 
 
 @app.route('/newdash', methods=['POST','GET']) 
 @login_required
 def newdash():
-    return render_template('newdash.html')
+    user_count = Staff.query.count()
+    return render_template('newdash.html', user_count=user_count, user=current_user)
+
+
 
 
 
@@ -747,6 +879,7 @@ def processor1():
         db.session.commit()
 
         return "Signup Completed"
+    
     search_name = request.args.get('search_name', '').strip()
     member_staff = request.args.get('member_staff', '').strip()
     department_directorate_unit = request.args.get('department_directorate_unit', '').strip()
@@ -801,7 +934,30 @@ def processor1():
     if end_of_contract:
         end_of_contract = datetime.strptime(end_of_contract, '%Y-%m-%d').date()
         staff_members = [staff for staff in staff_members if staff.end_of_contract == end_of_contract]
+    
+    # selected_department_units = request.args.getlist('department_unit')
+    # selected_genders = request.args.getlist('gender')
+    # selected_job_titles = request.args.getlist('job_title')
+    # selected_employment_statuses = request.args.getlist('employment_status')
 
+
+    # staff_members = Staff.query.all()
+
+    # filtered_staff_members = staff_members
+
+    # if selected_department_units:
+    #     filtered_staff_members = [staff for staff in filtered_staff_members if staff.department_directorate_unit in selected_department_units]
+
+    # if selected_genders:
+    #     filtered_staff_members = [staff for staff in filtered_staff_members if staff.gender in selected_genders]
+
+    # if selected_job_titles:
+    #     filtered_staff_members = [staff for staff in filtered_staff_members if staff.job_title in selected_job_titles]
+
+    # if selected_employment_statuses:
+    #     filtered_staff_members = [staff for staff in filtered_staff_members if staff.employment_status in selected_employment_statuses]
+
+ 
 
     return render_template('as.html', staff_members=staff_members,user=current_user)
 
@@ -820,4 +976,4 @@ def landing():
 
 
 if __name__ == '__main__':
-    app.run(host='0.0.0.0',port=5000, debug=True)
+    app.run(host='0.0.0.0',port=4000, debug=True)

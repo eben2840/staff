@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+
+{% block body %}
+
+<br><br>
+<br><br>
+<br><br>
+<br><br>
+<br><br>
+    <h1>Remove Users</h1>
+    <form method="POST" action="/remove_user">
+        <ul>
+            {% for staff_member in staff_members %}
+                <li>
+                    {{ staff_member.firstname }} {{ staff_member.surname }}
+                    <button type="submit" name="user_id" value="{{ staff_member.id }}">Remove</button>
+                </li>
+            {% endfor %}
+        </ul>
+    </form>
+{% endblock %}

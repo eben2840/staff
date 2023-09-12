@@ -58,17 +58,30 @@
             </ul>
         </div>-->
     </div>
+
+    <div class="tabContainer">
+        <a href="logout"> <div class="tabButton" style="background-color:#fff; padding:15px; border-radius:5px; color:#d31515"><i class="fa fa-database"></i><span>logout</span></div></a>
+        <div class="tabButtonBorder"></div>
+<!--                <div class="panel">
+            <ul>
+                <li><input type="checkbox" /><span>İstanbul</span> </li>
+                <li><input type="checkbox" /><span>Ankara</span> </li>
+                <li><input type="checkbox" /><span>İzmir</span> </li>
+                <li><input type="checkbox" /><span>Balıkesir</span> </li>
+            </ul>
+        </div>-->
+    </div>
 </aside>
 <main class="admin__main">
     <div class="upgradeAccount">
         <img class="person girl" src="static/images/me.png" style="width:200px; height:200px;" alt="">
         
-        <span class="upgradeAccount__text__header" style="font-size:40px;">Welcome, <span><b>Andy Owusu</b></span></span>
-        <span class="upgradeAccount__text__description">Make whole management even more effective and enjoyable. Upgrade your profile to use the service to the best advantage. Let us help you enjoy more of what you do.</span>
+        <span class="upgradeAccount__text__header" style="font-size:40px;">Welcome, <span><b>{{ current_user.firstname}}</b></span></span>
+        <span class="upgradeAccount__text__description">Make whole management even more effective and enjoyable. Let us help you enjoy more of what you do.</span>
         <div class="upgradeAccount__text__button">
             <!--<img class="effect-before" src="https://ozcanzaferayan.github.io/fitness-admin-panel-css-grid/img/buttonEffect.png" alt="">
            -->
-            <a href="/as" style="text-decoration:none;">Document Tracker</a>
+            <a href="" style="text-decoration:none;">Document Tracker</a>
             <a href="/as" style="text-decoration:none;">Looking for a Staff?</a>
             <!--<img class="effect-before" src="https://ozcanzaferayan.github.io/fitness-admin-panel-css-grid/img/buttonEffect.png" alt="">
             -->
@@ -80,7 +93,7 @@
     </div>
     
 
-
+<!-- 
     <div class="searchResults">
         
         <div class="car" style="box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px; background-color:#fff; border-radius:20px; padding:20px;">
@@ -115,8 +128,8 @@
             
         </div>
 
-        <!--another-->
-        <div class="car" style="box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px; background-color:#fff; border-radius:20px; padding:20px;">
+        another-->
+        <!-- <div class="car" style="box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px; background-color:#fff; border-radius:20px; padding:20px;">
             <div class="user">
                 
                 <div class="nameAndStars" style="display:flex; justify-content:space-between;">
@@ -126,10 +139,10 @@
                 </a>
                 </div>
                 
-            </div>
+            </div> -->
             
             
-            <div class="skills">
+            <!-- <div class="skills">
                 
             <div  style="display:flex; justify-content:space-between; margin-top:10px;">
 
@@ -146,9 +159,9 @@
             </div>
             <hr class="seperator" />
             
-        </div>
+        </div> -->
         <!--another one-->
-        <div class="car" style="box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px; background-color:#fff; border-radius:20px; padding:20px;">
+        <!-- <div class="car" style="box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px; background-color:#fff; border-radius:20px; padding:20px;">
             <div class="user">
                 
                 <div class="nameAndStars" style="display:flex; justify-content:space-between;">
@@ -182,7 +195,7 @@
         </div>
 
         
-    </div>
+    </div>  -->
 
 
         <!--another-->
@@ -192,6 +205,7 @@
                 <div class="nameAndStars" style="display:flex; justify-content:space-between;">
                     <div class="name"><h6 class="text-muted"><b>Total Number of Staff</b></h6></div> 
                 <a href="#">
+                    
                     <div class="name" style="background-color:#ca181e; padding:5px; color:#fff; border-radius:5px;"><i class="fa fa-address-book" aria-hidden="true"></i></div> 
                 </a>
                 </div>
@@ -203,19 +217,26 @@
                 
             <div  style="display:flex; justify-content:space-between; margin-top:10px;">
 
-                <span class="header"style="font-size:30px;"><b>12</b> </span>
+                <span class="header"style="font-size:30px;"><b>{{ user_count }}</b> </span>
                 <span class="header"></span>
             </div>
                 
             </div>
 
+            
+
             <hr class="seperator" />
             <div class="customers" style="display:flex; justify-content:space-between;">
-                <span class="header"><b>Rank:</b></span>
-                <span class="header"><b>Department:</b> </span>
+                <!-- <span class="header"><b>Rank:</b></span>
+                <span class="header"><b>Department:</b> </span> -->
             </div>
             <hr class="seperator" />
             
         </div>
+
+        <!-- Add this link to the template -->
+<a href="{{ url_for('send_message', recipient_id=user.id) }}">Send Message</a>
+
 </main>
+
     {%endblock body%}

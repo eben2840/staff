@@ -90,6 +90,9 @@ def load_user(user_id):
 # def signup ():
 #     return render_template('regform.html')
 
+def reportError():
+    pass
+
 @app.route('/addnew', methods=['GET', 'POST'])
 def processor():
     if request.method == 'POST':
@@ -167,10 +170,17 @@ def processor():
             immigration_number=immigration_number
         )
 
-        db.session.add(new_staff)
-        db.session.commit()
+        try:
+            db.session.add(new_staff)
+            db.session.commit()
+            message = "Hi " + new_staff.surname + " your data has been updated."
+        except Exception as e:
+            message = "Oops, there seems to have been an error. Please check and try again later"
+            reportError(e)
 
-        return "Signup Completed"
+        flash(message)
+
+        return redirect(url_for('newdash'))
 
     return render_template('addnew.html')
 

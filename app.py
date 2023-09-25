@@ -4,8 +4,7 @@ from flask_login import LoginManager, UserMixin, login_user,login_required, logo
 from sqlalchemy import or_, func
 from datetime import datetime
 from flask_migrate import Migrate
-
-
+from utils import *
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'secret_key'
@@ -14,8 +13,6 @@ app.config['SQLALCHEMY_DATABASE_URI']= 'postgresql://postgres:new_password@45.22
 
 db = SQLAlchemy(app)
 migrate = Migrate(app, db)
-
-
 
 class Staff(db.Model, UserMixin):
     id = db.Column(db.Integer, primary_key=True)
@@ -90,7 +87,8 @@ def load_user(user_id):
 # def signup ():
 #     return render_template('regform.html')
 
-def reportError():
+def reportError(e):
+    print(e)
     pass
 
 @app.route('/addnew', methods=['GET', 'POST'])
@@ -111,8 +109,8 @@ def processor():
         grade = request.form['grade']
         job_title = request.form['job_title']
         employment_status = request.form['employment_status']
-        date_of_appointment_str = request.form['date_of_appointment']
-        end_of_contract_str = request.form['end_of_contract']
+        date_of_appointment_str = request.form.get('date_of_appointment',datetime.now())
+        end_of_contract_str = request.form.get('end_of_contract', datetime.now())
 
         ghana_card = request.form['ghana_card']
         snit_number = request.form['snit_number']
@@ -131,8 +129,8 @@ def processor():
         immigration_status = request.form['immigration_status']
         immigration_number = request.form['immigration_number']
 
-        date_of_appointment = datetime.strptime(date_of_appointment_str, '%Y-%m-%d').date()
-        end_of_contract = datetime.strptime(end_of_contract_str, '%Y-%m-%d').date()
+        # date_of_appointment = datetime.strptime(date_of_appointment_str, '%Y-%m-%d').date()
+        # end_of_contract = datetime.strptime(end_of_contract_str, '%Y-%m-%d').date()
 
         new_staff = Staff(
             surname=surname,
@@ -150,8 +148,8 @@ def processor():
             grade=grade,
             job_title=job_title,
             employment_status=employment_status,
-            date_of_appointment=date_of_appointment,
-            end_of_contract=end_of_contract,
+            date_of_appointment=datetime.now(),
+            end_of_contract=datetime.now(),
             ghana_card=ghana_card,
             snit_number=snit_number,
             tin_number=tin_number,
@@ -179,6 +177,13 @@ def processor():
             reportError(e)
 
         flash(message)
+
+        sendNaloSms(new_staff.number, "Hello "+ new_staff.surname + ' ' + new_staff.firstname + " you have successfully been onboarded to Central Universities HR dashbaord. Please click this link to activate your account.")
+
+        # if addnew:
+        # notifyEndUsers
+        # else
+        # flash
 
         return redirect(url_for('newdash'))
 
@@ -221,7 +226,18 @@ def login():
     
     return render_template("login.html")
 
-
+@app.route('/resetPassword', methods=['GET', 'POST'])
+def resetPassword():
+    # get users email address and phone number
+    if request.method == 'POST':
+        email = request.form["email"]
+        number = request.form["number"]
+        staff = Staff.query.filter_by(email = email, number = number).first()
+        if staff != None:
+            message = "Hello, "+ staff.surname + " " + staff.firstname + ". You just requested a password reset for your CU Staff Portal. If this was not you, please ignore, else, Please click on the link."
+            sendAnEmail("CU Staff Portal", "Reset Password Request", message,email)
+        return redirect(url_for('login'))
+    return render_template('resetPassword.html')
 
 @app.route('/myprofile')
 # @login_required  
@@ -277,14 +293,10 @@ def processor2():
     immigration_status = request.form['immigration_status']
     immigration_number = request.form['immigration_number']
 
-  
-
 
     date_of_appointment = datetime.strptime(date_of_appointment_str, '%Y-%m-%d').date()
     end_of_contract = datetime.strptime(end_of_contract_str, '%Y-%m-%d').date()
 
-
-    
     new_user = Staff(
         surname=surname,
         firstname=firstname,
@@ -538,7 +550,7 @@ def edit_employment_status(staff_id):
 
 # Edit page route
 @app.route('/edit/<int:staff_id>', methods=['GET'])
-@login_required
+# @login_required
 def edit_staff(staff_id):
     staff_member = Staff.query.get(staff_id)
     if staff_member:
@@ -651,7 +663,7 @@ def show_user_profile(user_id):
         return "User not found."
 
 
-@app.route('/user/<int:user_id>')
+@app.route('/<int:user_id>')
 def show_user_profile_by_id(user_id):
     # Assuming you retrieve the user object here
     user = get_staff_by_id(user_id)

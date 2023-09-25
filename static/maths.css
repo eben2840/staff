@@ -72,6 +72,8 @@ a {
 
 .admin__header {
     grid-area: header;
+    height: 100px;
+    
     background-color: #fff;
     box-shadow: 0 2px 8px -2px var(--gray-lighter);
     z-index: 1;

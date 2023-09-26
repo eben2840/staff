@@ -70,6 +70,15 @@ a {
     flex-wrap: wrap;
 }
 
+.morecontent span {
+    display: none;
+}
+.morelink {
+    text-decoration: none;
+    font-weight: 600;
+    color:rgb(6, 27, 164);
+    display: block;
+}
 .admin__header {
     grid-area: header;
     height: 100px;

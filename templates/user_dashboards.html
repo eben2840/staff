@@ -39,15 +39,20 @@
     style="box-shadow: 0 2px 8px -2px var(--gray-lighter); grid-area: header;
     grid: auto / var(--admin-nav-width) 1fr;" >
       <div class="container-xl">
+         <!-- Logo -->
+         <a class="navbar-brand" href="#">
+          <img src="https://www.central.edu.gh/static/img/Central-Uni-logo.png" style="width:100px;" class="h-8" alt="...">
+        </a>
         
-        <button class="navbar-toggler" style="border:none;"  type="button" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+        <div class="navbar-toggler" style="border:none; font-size:15px; " 
+         aria-label="Toggle navigation">
+          
           <div class="dropdown" >
             
-            <div class="btn btn-secondary dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false" style=" background-color:#ca181e; border-radius:50px; width:40px;height:40px;">
-              <i class="fas fa-person-booth    "></i> 
+            <div class=" dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false" >
+              <i class="fas fa-user" style="color:#000; font-size:20px;"></i> 
               
             </div>
-            
           
             <ul class="dropdown-menu">
               <li><a href="/myprofile" class="dropdown-item" href="#">My Profile</a></li>
@@ -59,13 +64,33 @@
               </form>
             </ul>
           </div>
-        </button>
-        
-        <!-- Logo -->
-        <a class="navbar-brand" href="#">
-          <img src="https://www.central.edu.gh/static/img/Central-Uni-logo.png" style="width:100px;" class="h-8" alt="...">
-        </a>
+        </div>
+
         <!-- Navbar toggle -->
+        <!--<div class="d-flex align-items-lg-center mt-3 mt-lg-0" style="margin-right:30px;">
+          <div class="dropdown">
+            <div class=" dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false" >
+              <i class="fas fa-user" style="color:#000; font-size:20px;"></i> 
+              
+            </div>
+           
+          
+            <ul class="dropdown-menu">
+              <li><a href="/myprofile" class="dropdown-item" href="#">My Profile</a></li>
+              
+
+              <li><a class="dropdown-item" href="#">Reset Password</a></li>
+              
+              <form action="{{ url_for('logout') }}" method="POST">
+                <input type="submit" value="Logout" style="margin-left:15px; background-color:#fff; border:none;">
+            </form>
+            </ul>
+          </div>
+        </div>
+      </div>-->
+        
+        
+       
         
         <!-- Collapse -->
         <div class="collapse navbar-collapse" id="navbarCollapse">
@@ -78,19 +103,18 @@
             
           </div>
           <!-- Action -->
-        <div class="d-flex align-items-lg-center mt-3 mt-lg-0" style="margin-right:30px;">
+        <div class="d-flex align-items-lg-center mt-3 mt-lg-0" style="margin-right:30px;" >
             <div class="dropdown">
               <div class=" dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false" >
-                <i class="fas fa-person-booth" style="color:#000; font-size:20px;"></i> 
+                <i class="fas fa-user" style="color:#000; font-size:20px;"></i> 
                 
               </div>
              
             
               <ul class="dropdown-menu">
                 <li><a href="/myprofile" class="dropdown-item" href="#">My Profile</a></li>
-                <li><a class="dropdown-item" href="#">Edit</a></li>
+                
 
-                <li><a class="dropdown-item" href="#">Reset Password</a></li>
                 
                 <form action="{{ url_for('logout') }}" method="POST">
                   <input type="submit" value="Logout" style="margin-left:15px; background-color:#fff; border:none;">
@@ -180,15 +204,17 @@
     
 
     <div style="display:flex; justify-content:space-between;">
-    <h4 style="color:#000; font-size:15px; text-align:left; margin-top:10px;"><b>Download Your Data</b></h4>
+    <h4 style="color:#000; font-size:14px; text-align:left; margin-top:10px;"><b>Topic Of the Statement</b></h4>
 
     <a href="path_to_your_file.pdf" download>
     <i class="fas fa-download" style="color:#000; margin-top:10px;"></i>
     </a>
     </div>
+    <h4 class="more" style="color:#000; font-size:12px; text-align:left; margin-top:10px;">Welcome to Central Live, the unique broadcasting platform of Central University in Ghana! Follow our radio activities here. Every week we bring you high-quality content for the CU community. Our programs are produced and hosted by students.</h4>
   </div>
-</div>
-
+ 
+  
+  
 <!-- 
 <div class="col-12 col-lg-3">
   <div class="department-item" >
@@ -257,7 +283,7 @@
 
 
   
-
+<script src="static/main.js"></script>
   <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
   <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
 
